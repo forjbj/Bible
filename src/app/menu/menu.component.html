@@ -1,0 +1,39 @@
+<div class="menu">
+    <hr>
+    <div (click) = "bibleService.menuHistoryBook = false;
+        bibleService.displayMenu = !bibleService.displayMenu"
+        class = "links"
+        routerLink="testaments">
+            Select a Bible Book
+    </div> 
+    <hr>
+    <div (click) = "bibleService.menuHistoryBook = false;
+        bibleService.displayMenu = !bibleService.displayMenu"
+        class="links" 
+        routerLink="search">
+        Word Search&ensp;<img src="./assets/search.svg" class="searchIcon">
+    </div>
+    <hr>
+    <div class="history">
+        History:
+        <ul class = "links" (click) = "historyService.rearrangeBooks('cur');"> 
+            {{this.historyService.curBookMenu}}
+        </ul>
+        <ul class = "links" (click) = "historyService.rearrangeBooks('sec');">
+            {{this.historyService.secBookMenu}}
+        </ul>
+        <ul class = "links" (click) = "historyService.rearrangeBooks('third');">
+            {{this.historyService.thirdBookMenu}}
+        </ul>
+    </div>
+    <hr>
+    <!-- Theme -->
+    <div class="mode">
+        Dark Theme
+        <label class="switch">
+            <input type="checkbox" id="theme" (change)="themeChange()">
+            <span class="slider"></span>
+          </label>
+    </div> 
+
+</div>

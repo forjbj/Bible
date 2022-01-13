@@ -1,0 +1,104 @@
+@import"../../styles.scss";
+
+.searchSelect {
+    background-color: var(--paper);
+    position: sticky;
+    position: -webkit-sticky;
+    top: 2.2em;
+    padding-top: 0.2em;
+    text-align: center;
+}
+// search input
+.searchFor {
+    border-radius: 0;
+    margin: 0.3rem;
+    white-space: nowrap;
+}
+.searchInputLabel {
+    font-size: 1rem;
+    padding: 1px;
+    vertical-align: middle;
+}
+.searchInput {
+    max-width: 50%;
+    font-size: 1.1rem;
+    vertical-align: middle;
+}
+.searchButton {
+    height: 1.6rem;
+    width: 3rem;
+    vertical-align: middle;
+    background-color: var(--gridColor);
+    &:hover, &:active {
+        background-color: var(--lightRed);
+    }
+}
+//end search input
+//search options
+.searchIn {
+    margin: 0.3rem 0;
+    border-radius: 0;
+    font-size: 1rem;
+    .space {
+        margin: 0.3rem;
+    }
+    @media (min-width: 620px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .space {
+            margin: 0rem;
+        }
+    }
+}
+.testaments {
+    font-size: 1rem;
+}
+.accuracy {
+    font-size: 1rem;
+}
+//end search options
+.noWrap {
+    white-space: nowrap;
+}
+
+.searchResults {
+    text-align: center;
+    min-height: 80vh; // needed to close menu on click
+}
+
+::ng-deep h3 {
+    color: red;
+}
+::ng-deep .alert {
+    background-color: var(--lightRed);
+    color: white;
+    padding: 0.3em;
+    border: 3px solid var(--zPaper);
+}
+::ng-deep .listResults {
+    display: grid;
+    max-width: 100%;
+    grid-gap: 1rem; // needed to stop words scrolling right
+    grid-template-columns: minmax(min-content, 10%) 1fr;
+    padding: 0;
+    text-align: left;
+    &:nth-child(odd) {
+        background-color: var(--gridColor);
+    }
+    &:hover, &:active {
+        background-color: var(--searchHighlight);
+    }
+}
+::ng-deep .bookResults {
+    font-size: 0.9rem;
+    text-align: right;
+    color: var(--scriptNum);
+    margin: auto 0;
+}
+::ng-deep .scrResults {
+    font-size: 1.1rem;
+    text-align: left;
+}
+::ng-deep .highlight {
+    color: red;
+}

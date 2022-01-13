@@ -1,0 +1,91 @@
+@import"../../styles.scss";
+
+// sticky nav 
+nav {
+    position: -webkit-sticky; // needed for apple stuff
+    position: sticky;
+    top: 0;
+    z-index: 1; // necessary for the nav's child (menu) to overlay the router-outlet; search is sticky so is this.
+    text-align: center;
+    background-color: var(--nav);
+    border-bottom: var(--ink) solid 1px;
+    font-family: "Bookman", Georgia, serif;
+    color: var(--zInk);
+    height: 2.2em;
+    transition: top 0.3s; // animate scroll nav for Bible See display-chapter.component.ts
+} 
+.bible {
+    font-variant: small-caps;
+}
+.kjVersion {
+    font-size: 0.7em;
+} 
+// book title button
+.titleButton {
+    font-weight: bold;
+    color: var(--zInk);
+ //   border: solid var(--buttonBorder) 1px;
+    background-color: var(--button);
+    min-width: clamp(7rem, 30vw, 13rem);
+    padding: 0.3em;
+    margin: 0.3em;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover, &:focus, &:active {
+        color: var(--ink);
+        background-color: var(--buttonActive);
+        outline: 0; //needed for chrome
+    }
+}
+.menuButton {
+    margin: 0.1em;
+    position: absolute;
+    right: 1em;
+    top: 0;
+    cursor: pointer;
+    width: 2em;
+    height: 2em;
+    &:hover span, &:focus span{
+        background-color: var(--buttonActive);
+    }
+    span {
+        position: absolute;
+        display: block;
+		width: 100%;
+		height: 0.4em;
+		background-color: var(--button);
+		border-radius: 0.25em;
+        border: solid var(--buttonBorder) 1px;
+		transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
+        
+		&:first-of-type {
+			top: 0.1em;
+		}
+        &:nth-of-type(2) {
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+		&:last-of-type {
+			bottom: 0.1em;
+		} 
+    }
+    &:active span {
+            &:first-of-type {
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            &:nth-of-type(2) {
+                display: none;
+            }
+            &:last-of-type {
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+    }
+}
+.menuButtonActive span {
+    background-color: var(--buttonActive);
+}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"import * as wasm from \"./wasm_test_bg.wasm\";\nexport * from \"./wasm_test_bg.js\";","map":null,"metadata":{},"sourceType":"module"}

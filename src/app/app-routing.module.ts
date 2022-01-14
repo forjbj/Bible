@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { TestamentsComponent } from './testaments/testaments.component';
 import { DisplayBookComponent } from './display-book/display-book.component';
 import { SearchComponent } from './search/search.component';
+import { AboutComponent } from './about/about.component';
+import { WidgetComponent } from './widget/widget.component';
 
 const routes: Routes = [
   { path: '',
@@ -14,6 +16,12 @@ const routes: Routes = [
   },
   { path: 'search',              
   component: SearchComponent, 
+  },
+  { path: 'about',              
+  component: AboutComponent, 
+  },
+  { path: 'widget',              
+  component: WidgetComponent, 
   },
   { path: 'book/:id',    //this works, however gives an error code 404 from static server (github pages) on reload
     component: DisplayBookComponent,

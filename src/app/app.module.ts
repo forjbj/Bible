@@ -15,6 +15,8 @@ import { ChapterNumbersComponent } from './chapter-numbers/chapter-numbers.compo
 import { SafePipe } from './safe.pipe';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
+import { WidgetComponent } from './widget/widget.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { FormsModule } from '@angular/forms';
     ChapterNumbersComponent,
     SafePipe,
     SearchComponent,
+    AboutComponent,
+    WidgetComponent,
   ],
   imports: [
     BrowserModule,

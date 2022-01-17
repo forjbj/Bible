@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, HostListener, Inject, OnInit } from '@angular/core';
 import { BibleService } from '../bible.service';
 import { HistoryService } from '../history.service';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import * as wasm from '../../../pkg';
 
@@ -19,12 +19,13 @@ private observer: IntersectionObserver;
   constructor( public bibleService: BibleService,
                public historyService: HistoryService,
                private title: Title,
+               private meta: Meta, 
                @Inject(DOCUMENT) public document: Document, ) { 
     
 
     this.renderedBook = wasm.render(this.bibleService.testament, this.bibleService.bookSelected);
     this.historyService.newBook();
-
+    this.meta.addTag({ name: 'description', content: 'An opensource, offline capable (PWA), King James Version (Cambridge) Bible application' });
   }   
   
   ngOnInit() {} 

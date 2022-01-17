@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, HostListener, ElementRef } from '@angular/core';
 import { BibleService } from '../bible.service';
 import * as wasm from '../../../pkg';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,12 +28,15 @@ export class SearchComponent implements OnInit, AfterViewInit {
   
   constructor(public bibleService: BibleService,
               public title: Title,
+              private meta: Meta,
               public elementRef:ElementRef,
               private router: Router ) { 
     // change title so as to not make it a button
     this.bibleService.pageTitle = "Search";
     this.bibleService.title = this.bibleService.pageTitle;
     this.title.setTitle('Bible Search');
+    this.meta.addTag({ name: 'description', content: 'Offline search function for the bible (webassembly)' });
+
 
   }
   ngOnInit(): void {

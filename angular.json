@@ -29,7 +29,8 @@
             "assets": [
               "src/assets",
               "src/manifest.webmanifest",
-              "src/sitemap.xml"
+              "src/sitemap.xml",
+              "src/BingSiteAuth.xml"
             ],
             "styles": [
               "src/styles.scss"

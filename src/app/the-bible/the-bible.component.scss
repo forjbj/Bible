@@ -11,14 +11,14 @@ nav {
     border-bottom: var(--ink) solid 1px;
     font-family: "Bookman", Georgia, serif;
     color: var(--zInk);
-    height: 2.2em;
+    height: 2.2rem;
     transition: top 0.3s; // animate scroll nav for Bible See display-chapter.component.ts
 } 
 .bible {
     font-variant: small-caps;
 }
 .kjVersion {
-    font-size: 0.7em;
+    font-size: 0.7rem;
 } 
 // book title button
 .titleButton {
@@ -27,8 +27,8 @@ nav {
  //   border: solid var(--buttonBorder) 1px;
     background-color: var(--button);
     min-width: clamp(7rem, 30vw, 13rem);
-    padding: 0.3em;
-    margin: 0.3em;
+    padding: 0.3rem;
+    margin: 0.3rem;
     cursor: pointer;
     transition: 0.3s;
     &:hover, &:focus, &:active {
@@ -38,13 +38,12 @@ nav {
     }
 }
 .menuButton {
-    margin: 0.1em;
     position: absolute;
-    right: 1em;
+    right: 1rem;
     top: 0;
     cursor: pointer;
-    width: 2em;
-    height: 2em;
+    width: 2rem;
+    height: 2.2rem;
     &:hover span, &:focus span{
         background-color: var(--buttonActive);
     }
@@ -52,14 +51,14 @@ nav {
         position: absolute;
         display: block;
 		width: 100%;
-		height: 0.4em;
+		height: 0.4rem;
 		background-color: var(--button);
-		border-radius: 0.25em;
+		border-radius: 0.25rem;
         border: solid var(--buttonBorder) 1px;
 		transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
         
 		&:first-of-type {
-			top: 0.1em;
+			top: 0.2rem;
 		}
         &:nth-of-type(2) {
             top: 50%;
@@ -67,7 +66,7 @@ nav {
             transform: translateY(-50%);
         }
 		&:last-of-type {
-			bottom: 0.1em;
+			bottom: 0.2rem;
 		} 
     }
     &:active span {

@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.bibleService.pageTitle = "Search";
     this.bibleService.title = this.bibleService.pageTitle;
     this.title.setTitle('Bible Search');
-    this.meta.addTag({ name: 'description', content: 'Offline search function for the bible (webassembly)' });
+    this.meta.addTag({ name: 'description', content: 'Search for words in the bible (offline, webassembly)' });
 
 
   }

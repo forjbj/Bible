@@ -28,9 +28,10 @@
     height: 1.6rem;
     width: 3rem;
     vertical-align: middle;
-    background-color: var(--gridColor);
+    background-image: linear-gradient(to right, var(--paper), var(--gridColor), var(--gridColor), var(--gridColor), var(--paper));
     &:hover, &:active {
-        background-color: var(--lightRed);
+        background-image: linear-gradient(to right, var(--paper), var(--lightRed), var(--lightRed), var(--lightRed), var(--paper));
+
     }
 }
 //end search input
@@ -51,7 +52,9 @@
     }
 }
 .testaments {
+    font-family: Bookman, Georgia, serif;
     font-size: 1rem;
+    font-variant: small-caps;
 }
 .accuracy {
     font-size: 1rem;
@@ -91,6 +94,7 @@
 }
 ::ng-deep .bookResults {
     font-size: 0.9rem;
+    font-variant: small-caps;
     text-align: right;
     color: var(--scriptNum);
     margin: auto 0;

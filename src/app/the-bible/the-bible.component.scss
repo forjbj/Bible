@@ -15,20 +15,29 @@ nav {
     transition: top 0.3s; // animate scroll nav for Bible See display-chapter.component.ts
 } 
 .bible {
+    font-size: 1rem;
     font-variant: small-caps;
 }
-.kjVersion {
-    font-size: 0.7rem;
+.desc {
+    font-size: 0.8rem;
 } 
 // book title button
 .titleButton {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-family: Bookman, Georgia, serif;
+    font-size: 0.9rem;
     font-weight: bold;
+    font-variant: small-caps;
     color: var(--zInk);
  //   border: solid var(--buttonBorder) 1px;
     background-color: var(--button);
     min-width: clamp(7rem, 30vw, 13rem);
-    padding: 0.3rem;
-    margin: 0.3rem;
+    padding: 0.2rem;
     cursor: pointer;
     transition: 0.3s;
     &:hover, &:focus, &:active {

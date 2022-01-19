@@ -22,6 +22,7 @@ div:focus {
 .bookGrid {
     overflow-x: hidden;
     font-family: Bookman, Georgia, serif;
+    font-variant: small-caps;
     display: grid;
     width: 100%;
     grid-gap: 0.7rem;

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import * as bibleJson from '../../assets/bible/Bible.json';
 import * as wasm from '../../../pkg';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { BibleService } from '../bible.service';
 
 @Component({
@@ -21,10 +21,13 @@ export class WidgetComponent implements OnInit {
   public bookName: any;
   
 constructor( public title: Title,
+             public meta: Meta,
              public elementRef:ElementRef,
              public bibleService: BibleService,) {
   this.result = wasm.render_widget();
   this.title.setTitle('Bible Widget');
+  this.meta.addTag({ name: 'description', content: 'Widget; for future use, when enabled in PWA\'s'});
+
 }
 ngOnInit(){ }
 

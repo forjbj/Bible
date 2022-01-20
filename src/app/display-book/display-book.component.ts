@@ -18,14 +18,14 @@ private observer: IntersectionObserver;
 
   constructor( public bibleService: BibleService,
                public historyService: HistoryService,
-               private title: Title,
-               private meta: Meta, 
+               public title: Title,
+               public meta: Meta, 
                @Inject(DOCUMENT) public document: Document, ) { 
     
 
     this.renderedBook = wasm.render(this.bibleService.testament, this.bibleService.bookSelected);
     this.historyService.newBook();
-    this.meta.addTag({ name: 'description', content: 'An opensource, offline capable (PWA), King James Version (Cambridge) Bible application' });
+    this.meta.addTag({ name: 'description', content: 'King James Version (Cambridge) Bible; utilising WebAssembly for speed.' });
   }   
   
   ngOnInit() {} 

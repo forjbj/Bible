@@ -14,12 +14,12 @@ export class TheBibleComponent implements AfterViewInit {
 
   constructor(public bibleService: BibleService,
               public historyService: HistoryService,
-              private meta: Meta,
-              private title: Title,
+              public meta: Meta,
+              public title: Title,
               ) {
     
     title.setTitle('Bible');
-    this.meta.addTag({ name: 'description', content: 'Bible - King James Version'});
+    this.meta.addTag({ name: 'description', content: 'An opensource, installable and offline capable (PWA), King James Version (Cambridge) Bible application with History and Search functionality (utilising WebAssembly).'});
 
   } 
 

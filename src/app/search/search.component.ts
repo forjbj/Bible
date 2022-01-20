@@ -28,14 +28,14 @@ export class SearchComponent implements OnInit, AfterViewInit {
   
   constructor(public bibleService: BibleService,
               public title: Title,
-              private meta: Meta,
+              public meta: Meta,
               public elementRef:ElementRef,
               private router: Router ) { 
     // change title so as to not make it a button
     this.bibleService.pageTitle = "Search";
     this.bibleService.title = this.bibleService.pageTitle;
     this.title.setTitle('Bible Search');
-    this.meta.addTag({ name: 'description', content: 'Search for words in the bible (offline, webassembly)' });
+    this.meta.addTag({ name: 'description', content: 'Search for words in the bible offline; uses WebAssembly for faster results' });
 
 
   }

@@ -58,7 +58,7 @@ pub fn render (test: usize, book: usize, ) -> String {  //need to be string for 
         for verse in chapter["verses"].as_array().unwrap() {
             if verse["ver"] == 1 {
                 if psalms {
-                    let desc = format!("<p class=\"psalm fontType\">{}</p>",verse["description"].as_str().unwrap()); //unwrap necessary to remove ""
+                    let desc = format!("<div class=\"psalm fontType\">{}</div>",verse["description"].as_str().unwrap()); //unwrap necessary to remove ""
                     section.push_str(&desc);
                 };
                 let first = format!("<p id = \"{}-1\"class=\"firstVerse fontType\">{}</p>", chapter["chapter"], verse["scr"].as_str().unwrap());

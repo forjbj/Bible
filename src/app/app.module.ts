@@ -17,6 +17,7 @@ import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { WidgetComponent } from './widget/widget.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { WidgetComponent } from './widget/widget.component';
     SearchComponent,
     AboutComponent,
     WidgetComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

@@ -26,11 +26,15 @@
 ::ng-deep .psalm {
     text-align: center;
     font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0 5rem;
     @media (max-width: 1000px) {
         font-size: 0.9rem;
+        padding: 0 4rem;
     }
     @media (max-width: 768px) {
         font-size: 0.8rem;
+        padding: 0 2rem;
     }
 }
 ::ng-deep .verses {
@@ -78,8 +82,7 @@
     font-style: italic;
     font-size: 0.9rem;
     text-align: center;
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin: 0 3rem;
 }
 // for search result routing - highlight selected
 ::ng-deep .active {

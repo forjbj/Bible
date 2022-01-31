@@ -5,6 +5,7 @@ import { DisplayBookComponent } from './display-book/display-book.component';
 import { SearchComponent } from './search/search.component';
 import { AboutComponent } from './about/about.component';
 import { WidgetComponent } from './widget/widget.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '',
@@ -29,8 +30,9 @@ const routes: Routes = [
   { path: 'book',              
     component: DisplayBookComponent, 
   },
-  { path: '**', //this must be last or everything redirects here
-    component: DisplayBookComponent,
+   /* Custom 404 page not found - THIS MUST BE LAST ON THIS LIST*/
+  { path: '**',
+    component: NotFoundComponent
   },
 ];
 

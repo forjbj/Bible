@@ -19,7 +19,7 @@ export class TheBibleComponent implements AfterViewInit {
               ) {
     
     title.setTitle('Bible');
-    this.meta.addTag({ name: 'description', content: 'An opensource, installable and offline capable (PWA), King James Version (Cambridge) Bible application with History and Search functionality (utilising WebAssembly).'});
+    this.meta.addTag({ name: 'description', content: 'Opensource, installable and offline capable (PWA), King James Version (Cambridge) Bible application with History and Search functionality (utilising WebAssembly).'});
 
   } 
 

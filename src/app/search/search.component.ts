@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener, ElementRef, ViewEncapsulation } from '@angular/core';
 import { BibleService } from '../bible.service';
 import * as wasm from '../../../pkg';
 import { Meta, Title } from '@angular/platform-browser';
@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  encapsulation: ViewEncapsulation.None // removes ::ng-deep need
 })
 export class SearchComponent implements OnInit, AfterViewInit {
 

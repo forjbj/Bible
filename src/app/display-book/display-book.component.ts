@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, HostListener, Inject, OnInit } from '@angular/core';
+import { Component, AfterViewInit, HostListener, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { BibleService } from '../bible.service';
 import { HistoryService } from '../history.service';
 import { Meta, Title } from '@angular/platform-browser';
@@ -8,7 +8,8 @@ import * as wasm from '../../../pkg';
 @Component({
   selector: 'app-display-book',
   templateUrl: './display-book.component.html',
-  styleUrls: ['./display-book.component.scss']
+  styleUrls: ['./display-book.component.scss'],
+  encapsulation: ViewEncapsulation.None // removes ::ng-deep need
 })
 export class DisplayBookComponent implements OnInit, AfterViewInit {
 

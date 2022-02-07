@@ -69,16 +69,16 @@
     min-height: 80vh; // needed to close menu on click
 }
 
-::ng-deep h3 {
+h3 {
     color: red;
 }
-::ng-deep .alert {
+.alert {
     background-color: var(--lightRed);
     color: white;
     padding: 0.3em;
     border: 3px solid var(--zPaper);
 }
-::ng-deep .listResults {
+.listResults {
     display: grid;
     max-width: 100%;
     grid-gap: 1rem; // needed to stop words scrolling right
@@ -92,17 +92,17 @@
         background-color: var(--searchHighlight);
     }
 }
-::ng-deep .bookResults {
+.bookResults {
     font-size: 0.9rem;
     font-variant: small-caps;
     text-align: right;
     color: var(--scriptNum);
     margin: auto 0;
 }
-::ng-deep .scrResults {
+.scrResults {
     font-size: 1.1rem;
     text-align: left;
 }
-::ng-deep .highlight {
+.highlight {
     color: red;
 }

@@ -4,6 +4,7 @@ import { HistoryService } from '../history.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 import * as wasm from '../../../pkg';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-display-book',
@@ -17,23 +18,46 @@ public renderedBook: string;
 public scroll: number;
 private observer: IntersectionObserver;
 
+public fragString: string;
+public routedLink = false; //used to test for outside link
+
   constructor( public bibleService: BibleService,
                public historyService: HistoryService,
                public title: Title,
                public meta: Meta, 
-               @Inject(DOCUMENT) public document: Document, ) { 
-    
+               @Inject(DOCUMENT) public document: Document,
+               private activatedRoute: ActivatedRoute, ) { 
+
+    this.meta.addTag({ name: 'description', content: 'King James Version (Cambridge) Bible; utilising WebAssembly for speed.' });
+
+    this.activatedRoute.fragment.subscribe(fragment => { 
+      if (fragment && (this.bibleService.searchNavigate == false)){
+      let frag = fragment.split('-')
+      if (frag[3] != null){ // only if verse exists in route
+        localStorage.setItem( 'curTestamentIndex', (frag[0]));
+        localStorage.setItem( 'curBookIndex', (frag[1]));
+        localStorage.setItem('curChap', frag[2]);
+        this.bibleService.testament = Number(frag[0]);
+        this.bibleService.bookSelected = Number(frag[1]);
+        this.bibleService.title = this.bibleService.bible[frag[0]].books[frag[1]].bookName;
+     //   this.bibleService.bookNew = false;
+        this.bibleService.showChapters = false;
+        this.fragString = fragment.toString();
+        this.routedLink = true;
+      } 
+    }
+    });            
 
     this.renderedBook = wasm.render(this.bibleService.testament, this.bibleService.bookSelected);
-    this.historyService.newBook();
-    this.meta.addTag({ name: 'description', content: 'King James Version (Cambridge) Bible; utilising WebAssembly for speed.' });
+    if ((this.routedLink == false) || (this.bibleService.searchNavigate == false)) {
+      this.historyService.newBook();
+    }
   }   
   
   ngOnInit() {} 
 
   ngAfterViewInit() {
 
-    window.scroll(0, Number(localStorage.getItem('curScrollY')));
 
     // store book for loading on return, if not chosen from history -MUST BE UNDER ngAfterViewInit 
     this.historyService.storeBooks();
@@ -52,12 +76,14 @@ private observer: IntersectionObserver;
     this.observer = new IntersectionObserver(function (entries) {
     entries.forEach(entry => {
       let chapter = entry.target.querySelector("div").id; 
+      let splits = chapter.split('-');
+      let targetChapter = splits[2];
       if (entry.isIntersecting ) {
-         localStorage.setItem('curChap', chapter); 
+         localStorage.setItem('curChap', targetChapter); 
       }
       else {
-        if (window.pageYOffset < this.scroll && chapter != "1")  { //chapter !- 1 ; necessary if history book - will result in chapter 0.
-          let newChap = (Number(chapter)-1).toString();
+        if (window.pageYOffset < this.scroll && targetChapter != "1")  { //chapter !- 1 ; necessary if history book - will result in chapter 0.
+          let newChap = (Number(targetChapter)-1).toString();
           localStorage.setItem( 'curChap', newChap);
         }     
       }
@@ -68,6 +94,15 @@ private observer: IntersectionObserver;
       this.observer.observe(chapter);
     }) 
 
+    // add highlighting if come from link and scroll
+    if (this.routedLink == true) {
+      let target = document.getElementById(this.fragString);
+      target.classList.add("activeLink");
+      setTimeout( function(){target.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})}, 100); //needed as it doesn't work on chrome without setTimeout
+    } else { //only scroll if not an outside link
+      // get scroll position (Y offset) from local storage and scroll to it -THIS MUST GO HERE OR SCROLLING TO OLD POSITION DOESN'T WORK
+      window.scroll(0, Number(localStorage.getItem('curScrollY')));
+    }
   }
 
   @HostListener('window:scroll', []) scrolled() {    

@@ -28,13 +28,16 @@ export class ChapterNumbersComponent implements AfterViewInit{
     this.observer = new IntersectionObserver(function (entries) {
     entries.forEach(entry => {
       let chapter = entry.target.querySelector("div").id; 
+      let splits = chapter.split('-');
+      let targetChapter = splits[2];
       if (entry.isIntersecting ) {
-          chaptersGrid[Number(chapter)-1].classList.add("chapterScroll");
+        chaptersGrid[Number(targetChapter)-1].classList.add("chapterScroll");
       } else {
-          chaptersGrid[Number(chapter)-1].classList.remove("chapterScroll");  
+        chaptersGrid[Number(targetChapter)-1].classList.remove("chapterScroll");
       }
+      let current = Number(localStorage.getItem('curChap'))-1;
         //block: "nearest" is essential to stop page moving!
-      chaptersGrid[(Number(localStorage.getItem('curChap'))-1)].scrollIntoView({block: "nearest"});
+      chaptersGrid[current].scrollIntoView({block: "nearest"});
     });
     },options);
       chapters.forEach(chapter=> {

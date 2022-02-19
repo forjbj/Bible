@@ -1,15 +1,11 @@
-.spacer {
-    height: calc(100vh/5);
+.four {
+  width: 50%;
+  height: 33vh;
+  padding-top: 20vh;
+  margin:  0 auto;
+  color: #771010;
+  h1, h2 {
+    text-align: center;
   }
-  .four {
-    width: 50%;
-    height: calc(100vh/3);
-    background-color: var(--ink);
-    margin: auto;
-    color: var(--paper);
-    h1, h2 {
-      background-color: var(--ink);
-      text-align: center;
-    }
-  }
+}
   

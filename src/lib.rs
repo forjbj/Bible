@@ -47,7 +47,7 @@ pub fn render (test: usize, book: usize, ) -> String {  //need to be string for 
     let current = bible_book["chapters"].as_array().unwrap();
     let mut section: String;
     for chapter in current {
-        section = format!("<section><div id =\"{}\"><div class=\"headings\" >", chapter["chapter"]);
+        section = format!("<section><div id =\"{}-{}-{}\"><div class=\"headings\" >", &test, &book, chapter["chapter"]);
         if psalms {
             let psal = format!("<p class=\"fontType\">PSALM {}</p></div>",chapter["chapter"]);
             section.push_str(&psal);
@@ -61,7 +61,7 @@ pub fn render (test: usize, book: usize, ) -> String {  //need to be string for 
                     let desc = format!("<div class=\"psalm fontType\">{}</div>",verse["description"].as_str().unwrap()); //unwrap necessary to remove ""
                     section.push_str(&desc);
                 };
-                let first = format!("<p id = \"{}-1\"class=\"firstVerse fontType\">{}</p>", chapter["chapter"], verse["scr"].as_str().unwrap());
+                let first = format!("<a href = \"../book#{0}-{1}-{2}-1\" id = \"{0}-{1}-{2}-1\" ><p class=\"firstVerse fontType\">{3}</p></a>", &test, &book, chapter["chapter"], verse["scr"].as_str().unwrap());
                 section.push_str(&first);
             } else {     
                 if psalms {               
@@ -70,8 +70,8 @@ pub fn render (test: usize, book: usize, ) -> String {  //need to be string for 
                         section.push_str(&desc);
                     }
                 }
-                let script = format!("<div id = \"{0}-{1}\"class = \"verses\"><p class=\"verseNumber fontType\">{1}</p>
-                                        <p class = \"scripture fontType\">{2}</p></div>", chapter["chapter"], verse["ver"], verse["scr"].as_str().unwrap());
+                let script = format!("<div id = \"{0}-{1}-{2}-{3}\" class = \"verses\"><a href = \"../book#{0}-{1}-{2}-{3}\" ><p class=\"verseNumber fontType\">{3}</p></a>
+                                        <a href = \"../book#{0}-{1}-{2}-{3}\"><p class = \"scripture fontType\">{4}</p></a></div>", &test, &book, chapter["chapter"], verse["ver"], verse["scr"].as_str().unwrap());
                 section.push_str(&script);
             }
         }
@@ -140,16 +140,17 @@ info!("{}", z); */
                             let select = &selected.to_lowercase();
                             for word in word_ind.iter() { //check all words are in the scripture
                                 let mat = format!("{}", &word.to_lowercase());
-                                if acc == 0 {
-                                    if select.contains(&mat) { //find everything regardless of case
+                                
+                                if select.contains(&mat) { //find everything regardless of case
+                                    if acc == 0 { //only count if accuracy is contains
                                         counted = counted +1;
+                                    }else { // only count word if exact match
+                                        let re = Regex::new(&format!("\\b{}\\b", &word.to_lowercase())).unwrap();
+                                        if re.is_match(&select) {
+                                            counted = counted +1;
+                                        }
                                     }
-                                } else {
-                                    let re = Regex::new(&format!("\\b{}\\b", &word.to_lowercase())).unwrap();
-                                    if re.is_match(&select) {
-                                        counted = counted +1;
-                                    }
-                                }
+                                } 
                             }
                             if counted == word_ind.len() { // find location of words
                                 let mut highlight_insert = Vec::new();
@@ -244,16 +245,16 @@ fn search_single(inp: &str, acc: &usize, i: usize) -> String {
                 let select = &selected.to_lowercase();
                 for word in word_ind.iter() { //check all words are in the scripture
                     let mat = format!("{}", &word.to_lowercase());
-                    if *acc == 0 {
-                        if select.contains(&mat) { //find everything regardless of case
+                    if select.contains(&mat) { //find everything regardless of case
+                        if *acc == 0 { //only count if accuracy is contains
                             counted = counted +1;
+                        }else { // only count word if exact match
+                            let re = Regex::new(&format!("\\b{}\\b", &word.to_lowercase())).unwrap();
+                            if re.is_match(&select) {
+                                counted = counted +1;
+                            }
                         }
-                    } else {
-                        let re = Regex::new(&format!("\\b{}\\b", &word.to_lowercase())).unwrap();
-                        if re.is_match(&select) {
-                            counted = counted +1;
-                        }
-                    }
+                    } 
                 }
                 if counted == word_ind.len() { // find location of words
                     let mut highlight_insert = Vec::new();

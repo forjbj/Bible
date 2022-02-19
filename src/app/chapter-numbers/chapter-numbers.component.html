@@ -17,7 +17,7 @@
       <div 
           class = "chapters"
           [routerLink] = "['book']"
-          fragment = "{{chapters.chapter}}">
+          fragment = {{bibleService.testament}}-{{bibleService.bookSelected}}-{{chapters.chapter}}>
           {{chapters.chapter }}
       </div>
     </ng-container>

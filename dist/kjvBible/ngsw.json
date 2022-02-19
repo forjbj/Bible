@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1644209436200,
+  "timestamp": 1644274763138,
   "index": "https://biblekjv.app/index.html",
   "assetGroups": [
     {
@@ -12,7 +12,7 @@
       },
       "urls": [
         "https://biblekjv.app/index.html",
-        "https://biblekjv.app/main.14dc5ca98b4e8a16.js",
+        "https://biblekjv.app/main.17ad481eb9ba68f2.js",
         "https://biblekjv.app/manifest.webmanifest",
         "https://biblekjv.app/polyfills.8039e9928a9930ad.js",
         "https://biblekjv.app/runtime.90583d4d37072480.js",
@@ -58,8 +58,8 @@
     "https://biblekjv.app/assets/search.svg": "f0b95bb75f03fa6b0f0c8ddf22fa02e5d662a06d",
     "https://biblekjv.app/assets/search_neutral.svg": "3f54ae72cdb1ef2adc88e9a28bf417d5e455ae50",
     "https://biblekjv.app/icon-192x192.321592a8a2f8ef9a.png": "177df93d4bc990b4551a7ca083f211364dc4b5a8",
-    "https://biblekjv.app/index.html": "0bcfc153f699bfe1486de24a179d4ea1846548c6",
-    "https://biblekjv.app/main.14dc5ca98b4e8a16.js": "8414429b976a01201d1ed373a1a678e081f95e1f",
+    "https://biblekjv.app/index.html": "b167fe32ee3a839c9b108d0b4c9f7b901f7259b0",
+    "https://biblekjv.app/main.17ad481eb9ba68f2.js": "8edcc586261489a6ab3aedb9fd9c81a2cf3b45a3",
     "https://biblekjv.app/manifest.webmanifest": "f1bc74ba2022a5deb5c2d6b44839105d4456b335",
     "https://biblekjv.app/polyfills.8039e9928a9930ad.js": "7e2bb62ead0026534fc1c7ce428605d93eed55b0",
     "https://biblekjv.app/runtime.90583d4d37072480.js": "a28ccb6eb2b8ad5bc318ca42c1625e559750b94f",

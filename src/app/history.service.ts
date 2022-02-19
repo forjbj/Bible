@@ -33,15 +33,17 @@ export class HistoryService {
 
   menuBooks() {
     this.curTheme =  localStorage.getItem('theme');
-    
+    let secTestInd = localStorage.getItem('secTestamentIndex');
+    let thirdTestInd = localStorage.getItem('thirdTestamentIndex');
+
     this.curBookMenu = this.bibleService.bible[Number(localStorage.getItem('curTestamentIndex'))].books[Number(localStorage.getItem('curBookIndex'))].bookName
     + ' '  + localStorage.getItem('curChap') ;
-    if (localStorage.getItem('secTestamentIndex') != null) {
-      this.secBookMenu = this.bibleService.bible[Number(localStorage.getItem('secTestamentIndex'))].books[Number(localStorage.getItem('secBookIndex'))].bookName
+    if (secTestInd) {
+      this.secBookMenu = this.bibleService.bible[Number(secTestInd)].books[Number(localStorage.getItem('secBookIndex'))].bookName
       + ' ' + localStorage.getItem('secSavedChap') ;
     }
-    if (localStorage.getItem('thirdTestamentIndex') != null) {
-      this.thirdBookMenu = this.bibleService.bible[Number(localStorage.getItem('thirdTestamentIndex'))].books[Number(localStorage.getItem('thirdBookIndex'))].bookName
+    if (thirdTestInd) {
+      this.thirdBookMenu = this.bibleService.bible[Number(thirdTestInd)].books[Number(localStorage.getItem('thirdBookIndex'))].bookName
       + ' ' + localStorage.getItem('thirdSavedChap') ;
     }
   }

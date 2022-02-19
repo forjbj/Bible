@@ -27,11 +27,30 @@
 .searchButton {
     height: 1.6rem;
     width: 3rem;
+    background-color: transparent;
     vertical-align: middle;
-    background-image: linear-gradient(to right, var(--paper), var(--gridColor), var(--gridColor), var(--gridColor), var(--paper));
-    &:hover, &:active {
-        background-image: linear-gradient(to right, var(--paper), var(--lightRed), var(--lightRed), var(--lightRed), var(--paper));
+    transition: transform ease 0.3s;
+    &:hover {
+       transform: scale(1.2);
+    }
+    &:active {
+        animation: spin 1s infinite;
+    }
+        @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+     }
+        @keyframes pulse {
+        0% {
+            transform: scale(1.2);
+        }
+        50% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.2);
 
+        }
     }
 }
 //end search input
@@ -67,17 +86,20 @@
 .searchResults {
     text-align: center;
     min-height: 80vh; // needed to close menu on click
+    .alert {
+        max-width: 70%;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 1.5rem;
+        font-style: italic;
+        color: #771010;
+        padding: 20vh 0.3rem 0 0.3em;
+        @media (max-width: 768px) {
+            max-width: 90%;
+        }
+        }
 }
 
-h3 {
-    color: red;
-}
-.alert {
-    background-color: var(--lightRed);
-    color: white;
-    padding: 0.3em;
-    border: 3px solid var(--zPaper);
-}
 .listResults {
     display: grid;
     max-width: 100%;

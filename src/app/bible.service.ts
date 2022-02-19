@@ -28,6 +28,8 @@ export class BibleService {
 
   public searchResults: any = "<br><h2>Search results will appear here...</h2>";
   public searchRequest: string = "Word or Words...";
+  public searchNavigate = false;
+
  
     constructor() {}
 }

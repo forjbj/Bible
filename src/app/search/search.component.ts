@@ -23,8 +23,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public accuracy: number = 0;
 
   accuracyLevel = [
-    { id: 0, label: "Contains (faster)" },
-    { id: 1, label: "Exact (slower)" },
+    { id: 0, label: "Contains Characters" },
+    { id: 1, label: "Exact Match" },
   ]
   
   constructor(public bibleService: BibleService,
@@ -59,10 +59,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
             this.bibleService.title = this.bibleService.bible[this.bibleService.testament].books[this.bibleService.bookSelected].bookName 
             this.bibleService.showChapters = false;
             this.bibleService.displayMenu = false;
-            let frag = (splits[2] + "-" + splits[3]).toString();
+            this.bibleService.searchNavigate = true;
+            let frag = element.id.toString();
             this.router.navigate(['book'], {fragment: frag}); //works
             if (document.getElementById(frag)) {
-              document.getElementById(frag).classList.add("active");
+              document.getElementById(frag).classList.add("activeLink");
             }
           }
           );

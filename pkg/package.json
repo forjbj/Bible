@@ -11,18 +11,18 @@
   "types": "wasm_test.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "@angular/platform-browser": "~13.0.3",
-    "@angular/service-worker": "~13.0.3",
+    "rxjs": "~7.4.0",
     "@angular/compiler": "~13.0.3",
-    "@angular/animations": "~13.0.3",
-    "tslib": "^2.3.1",
-    "@angular/platform-browser-dynamic": "~13.0.3",
-    "@angular/core": "~13.0.3",
     "@angular/router": "~13.0.3",
+    "@angular/core": "~13.0.3",
     "angular-cli": "^1.0.0-beta.28.3",
+    "@angular/animations": "~13.0.3",
     "@angular/common": "~13.0.3",
     "@angular/forms": "~13.0.3",
-    "rxjs": "~7.4.0",
-    "zone.js": "~0.11.4"
+    "@angular/service-worker": "~13.0.3",
+    "tslib": "^2.3.1",
+    "zone.js": "~0.11.4",
+    "@angular/platform-browser-dynamic": "~13.0.3",
+    "@angular/platform-browser": "~13.0.3"
   }
 }

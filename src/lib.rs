@@ -61,7 +61,7 @@ pub fn render (test: usize, book: usize, ) -> String {  //need to be string for 
                     let desc = format!("<div class=\"psalm fontType\">{}</div>",verse["description"].as_str().unwrap()); //unwrap necessary to remove ""
                     section.push_str(&desc);
                 };
-                let first = format!("<a href = \"../book#{0}-{1}-{2}-1\" id = \"{0}-{1}-{2}-1\" ><p class=\"firstVerse fontType\">{3}</p></a>", &test, &book, chapter["chapter"], verse["scr"].as_str().unwrap());
+                let first = format!("<div id = \"{0}-{1}-{2}-1\"><a href = \"../book#{0}-{1}-{2}-1\"><p class=\"firstVerse fontType\">{3}</p></a></div>", &test, &book, chapter["chapter"], verse["scr"].as_str().unwrap());
                 section.push_str(&first);
             } else {     
                 if psalms {               

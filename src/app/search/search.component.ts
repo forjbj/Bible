@@ -17,14 +17,14 @@ export class SearchComponent implements OnInit, AfterViewInit {
   testaments = [    
     { id: 0, label: "Old Testament" },
     { id: 1, label: "New Testament" },
-    { id: 2, label: "Old and New Testaments", selected: true}
+    { id: 2, label: "Old & New Testaments", selected: true}
   ]
 
   public accuracy: number = 0;
 
   accuracyLevel = [
     { id: 0, label: "Contains Characters" },
-    { id: 1, label: "Exact Match" },
+    { id: 1, label: "Exact Word Match" },
   ]
   
   constructor(public bibleService: BibleService,
@@ -32,9 +32,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
               public meta: Meta,
               public elementRef:ElementRef,
               private router: Router ) { 
-    // change title so as to not make it a button
+    //nav titles and buttons
     this.bibleService.pageTitle = "Search";
-    this.bibleService.title = this.bibleService.pageTitle;
+    this.bibleService.chapterButton = false;
+
     this.title.setTitle('Bible Search');
     this.meta.addTag({ name: 'description', content: 'Search for words in the bible offline; uses WebAssembly for faster results' });
 

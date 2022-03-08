@@ -12,9 +12,10 @@ export class TestamentsComponent implements AfterViewInit {
   constructor(public bibleService: BibleService,
               public title: Title,
               private meta: Meta, ) {
-        // change title so as to not make it a button
-    this.bibleService.pageTitle = "King James Version"
-    this.bibleService.title = this.bibleService.pageTitle;
+    //nav titles and buttons
+    this.bibleService.pageTitle = "KJV";
+    this.bibleService.chapterButton = false;
+
     this.title.setTitle('Bible Books');
     this.meta.addTag({ name: 'description', content: 'Select the Bible book to read' });
 

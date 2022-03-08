@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { BibleService } from '../bible.service';
 
 @Component({
@@ -10,11 +10,15 @@ import { BibleService } from '../bible.service';
 export class AboutComponent implements OnInit {
 
   constructor(public bibleService: BibleService,
-    public title: Title,) {
-        // change title so as to not make it a button
-        this.bibleService.pageTitle = "About this App";
-        this.bibleService.title = this.bibleService.pageTitle;
-        this.title.setTitle('About');
+              public title: Title,
+              public meta: Meta,) {
+    //nav titles and buttons
+    this.bibleService.pageTitle = "About";
+    this.bibleService.chapterButton = false;
+    
+    this.title.setTitle('About');
+    this.meta.addTag({ name: 'description', content: 'About this Application; including version history and repository location' });
+
    }
 
   ngOnInit(): void {

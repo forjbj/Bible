@@ -29,6 +29,8 @@ public routedLink = false; //used to test for outside link
                private activatedRoute: ActivatedRoute, ) { 
 
     this.meta.addTag({ name: 'description', content: 'King James Version (Cambridge) Bible; utilising WebAssembly for speed.' });
+    this.bibleService.pageTitle = this.bibleService.title;
+    this.bibleService.chapterButton = true;
 
     this.activatedRoute.fragment.subscribe(fragment => { 
       if (fragment && (this.bibleService.searchNavigate == false)){

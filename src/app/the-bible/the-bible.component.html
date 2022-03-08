@@ -1,32 +1,44 @@
 <!-- This outside/fullpage division is necessary for the nav to stay sticky in apple stuff; don't ask, I don't know either-->
 <div> 
   <nav id = "nav">
-    <div *ngIf = "bibleService.title != bibleService.pageTitle; else version"
-        (click) = "bibleService.displayMenu = false;">
-      <button class = "titleButton"
-              (click) = "bibleService.showChapters = !bibleService.showChapters;">
-        {{bibleService.title}} 
-      </button>
-      <app-chapter-numbers *ngIf = "bibleService.showChapters"></app-chapter-numbers>
+    <div  id="navGrid" class="navGrid">
+      <div id="description" class="desc">
+        {{bibleService.pageTitle}}
+      </div>
+      <div id="titleButton">
+        <div *ngIf="bibleService.chapterButton == true; else version"
+            (click) = "bibleService.displayMenu = false;">
+          <button class = "titleButton"
+                  (click) = "bibleService.showChapters = !bibleService.showChapters;">
+            <div *ngIf = "bibleService.title != 'Psalms'; else notChapterTitle">
+              Chapter
+            </div>
+            <ng-template #notChapterTitle>
+              <div>
+                Psalm
+              </div>
+            </ng-template>
+          </button>
+          <app-chapter-numbers *ngIf = "bibleService.showChapters"></app-chapter-numbers>
+        </div>
+        <ng-template #version >
+          <button class = "titleButton"
+            [routerLink] = "['./book']">
+            Back to {{bibleService.title}}
+          </button>
+        </ng-template>
+      </div>
+      <div id="menuButton"
+        class="menuButton"
+        [ngClass] = "bibleService.displayMenu ? 'menuButtonActive' : 'menuButton'"
+        (click) = "historyService.savePosition();
+                  bibleService.displayMenu = !bibleService.displayMenu;
+                  bibleService.showChapters = false" >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> 
     </div>
-    <ng-template #version >
-      <div class="bible">
-        Bible
-      </div>
-      <div class="desc">
-        ({{bibleService.title}})
-      </div>
-    </ng-template>
-    <div
-      class="menuButton"
-      [ngClass] = "bibleService.displayMenu ? 'menuButtonActive' : 'menuButton'"
-      (click) = "historyService.savePosition();
-                bibleService.displayMenu = !bibleService.displayMenu;
-                bibleService.showChapters = false" >
-      <span></span>
-      <span></span>
-      <span></span>
-    </div> 
     <app-menu *ngIf = "bibleService.displayMenu" ></app-menu>
   </nav>
   <router-outlet></router-outlet>

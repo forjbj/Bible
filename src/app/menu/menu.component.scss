@@ -2,16 +2,23 @@
 
 .menu {
   position: absolute;
+  top: 2.2rem;
+  margin: 0 1rem;
   min-width: 20%;
   z-index: 3;
-  border: 0 1px 1px 1px solid var(--ink);
-  right: 0;
-  background-color: var(--zPaper);
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+  background-color: var(--nav);
   color: var(--zInk);
-  top: 2.2em;
+ // top: 2.2rem;
+  transition: all 0.3s;
   hr {
     // check divider in line with links
     margin: 1em;
+  }
+  &[leftHanded = 'no'] {
+    right: 0;
   }
 }
 .history {

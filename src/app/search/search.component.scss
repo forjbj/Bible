@@ -4,15 +4,15 @@
     background-color: var(--paper);
     position: sticky;
     position: -webkit-sticky;
-    top: 2.2em;
+    top: 2.2rem;
     padding-top: 0.2em;
     text-align: center;
 }
 // search input
 .searchFor {
     border-radius: 0;
-    margin: 0.3rem;
     white-space: nowrap;
+    margin-top: 0.5rem;
 }
 .searchInputLabel {
     font-size: 1rem;
@@ -56,19 +56,14 @@
 //end search input
 //search options
 .searchIn {
-    margin: 0.3rem 0;
+    margin: 0.5rem 0;
     border-radius: 0;
     font-size: 1rem;
+    text-align: inherit;
     .space {
         margin: 0.3rem;
     }
-    @media (min-width: 620px) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        .space {
-            margin: 0rem;
-        }
-    }
+
 }
 .testaments {
     font-family: Bookman, Georgia, serif;

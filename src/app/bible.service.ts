@@ -30,6 +30,12 @@ export class BibleService {
   public searchRequest: string = "Word or Words...";
   public searchNavigate = false;
 
+  //variable for lefthand menu position
+  public leftHandOn: string;
+
+  //variable for chapter button display
+  public chapterButton: boolean;
+
  
     constructor() {}
 }

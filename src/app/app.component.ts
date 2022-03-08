@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import * as bibleJson from '../assets/bible/Bible.json';
 import {filter, map} from 'rxjs/operators';
+import { BibleService } from './bible.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
   updateAvailable = false;
 
   constructor(private swUpdate: SwUpdate,
-              public router: Router,) {
+              public router: Router,
+              public bibleService: BibleService) {
 
     // apply dark theme if set in storage
     if (localStorage.getItem('theme') == 'dark') {

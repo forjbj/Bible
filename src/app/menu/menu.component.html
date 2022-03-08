@@ -1,4 +1,28 @@
-<div class="menu">
+<div id= "menu" class="menu">
+    <hr>
+    <div (click) = "bibleService.menuHistoryBook = false;
+        bibleService.displayMenu = !bibleService.displayMenu"
+        class="links" 
+        routerLink="about">
+        About
+    </div>
+    <hr>
+    <!-- Theme -->
+    <div class="mode">
+        Dark Theme
+        <label class="switch">
+            <input type="checkbox" id="theme" (change)="themeChange()">
+            <span class="slider"></span>
+        </label>
+    </div> 
+    <!-- Left Handed -->
+    <div class="mode">
+        Left Handed
+        <label class="switch">
+            <input type="checkbox" id="leftHand" (change)="leftHand()">
+            <span class="slider"></span>
+        </label>
+    </div> 
     <hr>
     <div (click) = "bibleService.menuHistoryBook = false;
         bibleService.displayMenu = !bibleService.displayMenu"
@@ -6,14 +30,6 @@
         routerLink="testaments">
             Select a Bible Book
     </div> 
-    <hr>
-    <div (click) = "bibleService.menuHistoryBook = false;
-        bibleService.displayMenu = !bibleService.displayMenu"
-        class="links" 
-        routerLink="search">
-        Word Search&ensp;<img src="./assets/search.svg" class="searchIcon">
-    </div>
-    <hr>
     <div class="history">
         History:
         <ul class = "links" (click) = "historyService.rearrangeBooks('cur');"> 
@@ -26,21 +42,11 @@
             {{this.historyService.thirdBookMenu}}
         </ul>
     </div>
-    <hr>
-    <!-- Theme -->
-    <div class="mode">
-        Dark Theme
-        <label class="switch">
-            <input type="checkbox" id="theme" (change)="themeChange()">
-            <span class="slider"></span>
-          </label>
-    </div> 
-    <hr>
     <div (click) = "bibleService.menuHistoryBook = false;
         bibleService.displayMenu = !bibleService.displayMenu"
         class="links" 
-        routerLink="about">
-        About
+        routerLink="search">
+        Word Search&ensp;<img src="./assets/search.svg" class="searchIcon">
     </div>
     <hr>
 </div>

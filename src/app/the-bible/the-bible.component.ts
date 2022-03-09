@@ -21,6 +21,7 @@ export class TheBibleComponent implements OnInit, AfterViewInit {
     this.meta.addTag({ name: 'description', content: 'Bible application with History and Search functionality.'});
 
   } 
+
   ngOnInit() {
     // apply righthanded if set in storage
     let grid = document.getElementById('navGrid') as HTMLInputElement;
@@ -30,8 +31,8 @@ export class TheBibleComponent implements OnInit, AfterViewInit {
       grid.setAttribute('leftHanded', 'yes');
     }
   }
+  
   ngAfterViewInit() {
-
   }
 
 }

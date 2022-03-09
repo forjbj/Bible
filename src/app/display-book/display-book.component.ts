@@ -31,6 +31,7 @@ public routedLink = false; //used to test for outside link
     this.meta.addTag({ name: 'description', content: 'King James Version (Cambridge) Bible; utilising WebAssembly for speed.' });
     this.bibleService.pageTitle = this.bibleService.title;
     this.bibleService.chapterButton = true;
+    this.bibleService.chapterNumber = localStorage.getItem('curChap');
 
     this.activatedRoute.fragment.subscribe(fragment => { 
       if (fragment && (this.bibleService.searchNavigate == false)){
@@ -64,8 +65,9 @@ public routedLink = false; //used to test for outside link
     // store book for loading on return, if not chosen from history -MUST BE UNDER ngAfterViewInit 
     this.historyService.storeBooks();
     
-    // change tab title on load
-    let tabTitle = (this.bibleService.title).concat(' ',localStorage.getItem('curChap'));
+    // change tab title on load and chapter number
+    this.bibleService.chapterNumber = localStorage.getItem('curChap');
+    let tabTitle = (this.bibleService.title).concat(' ',this.bibleService.chapterNumber);
     this.title.setTitle(tabTitle);
 
     // save chapters on scroll
@@ -109,7 +111,8 @@ public routedLink = false; //used to test for outside link
 
   @HostListener('window:scroll', []) scrolled() {    
     // change chapter numbers in tab title as scrolling
-    let tabTitle = (this.bibleService.title).concat(' ',localStorage.getItem('curChap'));
+    this.bibleService.chapterNumber = localStorage.getItem('curChap');
+    let tabTitle = (this.bibleService.title).concat(' ',this.bibleService.chapterNumber);
     this.title.setTitle(tabTitle);
 
     localStorage.setItem('curScrollY', window.pageYOffset.toString());

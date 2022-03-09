@@ -35,6 +35,7 @@ export class BibleService {
 
   //variable for chapter button display
   public chapterButton: boolean;
+  public chapterNumber: string;
 
  
     constructor() {}

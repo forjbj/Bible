@@ -26,6 +26,9 @@ nav {
         font-variant: small-caps;
         justify-self: left;
         font-size: 0.9rem;
+        @media (max-width: 425px) {
+            margin: 0 0.5rem;
+        }
     } 
     #titleButton {
         grid-column: 2;

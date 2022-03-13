@@ -140,11 +140,11 @@ info!("{}", z); */
                             let select = &selected.to_lowercase();
                             for word in word_ind.iter() { //check all words are in the scripture
                                 let mat = format!("{}", &word.to_lowercase());
-                                
+
                                 if select.contains(&mat) { //find everything regardless of case
                                     if acc == 0 { //only count if accuracy is contains
                                         counted = counted +1;
-                                    }else { // only count word if exact match
+                                    } else { // only count word if exact match
                                         let re = Regex::new(&format!("\\b{}\\b", &word.to_lowercase())).unwrap();
                                         if re.is_match(&select) {
                                             counted = counted +1;
@@ -184,8 +184,8 @@ info!("{}", z); */
                                     selected.replace_range(match_offset..match_offset, "<span class=\"highlight\">");
                                     copy_highlight.pop();
                                 }
-                                let found = format!("<div id = \"{0}-{1}-{3}-{4}\" class = \"listResults\"> 
-                                <p class=\"bookResults\">{2} {3}:{4}</p><p class = \"scrResults\">{5}</p></div>", 
+                                let found = format!("<div id = \"{0}-{1}-{3}-{4}\" class = \"listResults\"><a href = \"../book#{0}-{1}-{3}-{4}\">
+                                <p class=\"bookResults\">{2} {3}:{4}</p></a><a href = \"../book#{0}-{1}-{3}-{4}\"><p class = \"scrResults\">{5}</p></a></div>", 
                                 i, j ,books["bookName"].as_str().unwrap(),chapters["chapter"], verses["ver"], selected); // extract route from id - see javascript, search component; angular stops routing from innerhtml
                                 results.push_str(&found);
                                 search_num += 1;
@@ -288,8 +288,8 @@ fn search_single(inp: &str, acc: &usize, i: usize) -> String {
                         selected.replace_range(match_offset..match_offset, "<span class=\"highlight\">");
                         copy_highlight.pop();
                     }
-                    let found = format!("<div id = \"{0}-{1}-{3}-{4}\" class = \"listResults\"> 
-                    <p class=\"bookResults\">{2} {3}:{4}</p><p class = \"scrResults\">{5}</p></div>", 
+                    let found = format!("<div id = \"{0}-{1}-{3}-{4}\" class = \"listResults\"><a href = \"../book#{0}-{1}-{3}-{4}\"> 
+                    <p class=\"bookResults\">{2} {3}:{4}</p></a><a href = \"../book#{0}-{1}-{3}-{4}\"><p class = \"scrResults\">{5}</p></a></div>", 
                     i, j ,books["bookName"].as_str().unwrap(),chapters["chapter"], verses["ver"], selected); // extract route from id - see javascript, search component; angular stops routing from innerhtml
                     results.push_str(&found);
                     search_num += 1;

@@ -92,7 +92,15 @@
         @media (max-width: 768px) {
             max-width: 90%;
         }
+    }
+    //remove styling from created links
+    a {
+        color: inherit;
+        text-decoration: none;
+        &:hover {
+            color: inherit;
         }
+    }
 }
 
 .listResults {

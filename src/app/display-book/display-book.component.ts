@@ -19,7 +19,8 @@ public scroll: number;
 private observer: IntersectionObserver;
 
 public fragString: string;
-public routedLink = false; //used to test for outside link
+
+public routedLink = false; //Needed to test for outside links including search link
 
   constructor( public bibleService: BibleService,
                public historyService: HistoryService,
@@ -43,7 +44,6 @@ public routedLink = false; //used to test for outside link
         this.bibleService.testament = Number(frag[0]);
         this.bibleService.bookSelected = Number(frag[1]);
         this.bibleService.title = this.bibleService.bible[frag[0]].books[frag[1]].bookName;
-     //   this.bibleService.bookNew = false;
         this.bibleService.showChapters = false;
         this.fragString = fragment.toString();
         this.routedLink = true;
@@ -52,7 +52,7 @@ public routedLink = false; //used to test for outside link
     });            
 
     this.renderedBook = wasm.render(this.bibleService.testament, this.bibleService.bookSelected);
-    if ((this.routedLink == false) || (this.bibleService.searchNavigate == false)) {
+    if (this.routedLink == false) {
       this.historyService.newBook();
     }
   }   

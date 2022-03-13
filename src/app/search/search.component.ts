@@ -60,12 +60,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
             this.bibleService.title = this.bibleService.bible[this.bibleService.testament].books[this.bibleService.bookSelected].bookName 
             this.bibleService.showChapters = false;
             this.bibleService.displayMenu = false;
-            this.bibleService.searchNavigate = true;
             let frag = element.id.toString();
             this.router.navigate(['book'], {fragment: frag}); //works
-            if (document.getElementById(frag)) {
-              document.getElementById(frag).classList.add("activeLink");
-            }
           }
           );
         });
@@ -80,9 +76,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.accuracy = +this.accuracy;
   }
   submitSearch(req: string) {
-      window.scrollTo(0,0); // bring new search to top of page
       this.bibleService.searchRequest = req;
-      this.bibleService.searchResults = wasm.search( this.checkedNumber, req, this.accuracy);
+      this.bibleService.searchResults = wasm.search( this.checkedNumber, req, this.accuracy)
+      window.scrollTo(0,0); // bring new search to top of page
   }
   @HostListener('window:scroll', []) scrolled() {    
     // keep position in case of return

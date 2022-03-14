@@ -37,7 +37,7 @@
 }
 //remove styling from created links
 section a {
-    color: inherit;
+    color: var(--ink);
     text-decoration: none;
     &:hover {
         color: inherit;
@@ -91,8 +91,8 @@ section a {
     margin: 0 3rem;
 }
 
-// for search result routing - highlight selected; 'section' needed to stop 'active' class elsewhere
-section .activeLink {
+// for search result routing
+.activatedLink {
     animation: result 7s ease 1s;
     .verseNumber {
         color: var(--lightRed);

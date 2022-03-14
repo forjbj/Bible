@@ -40,7 +40,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
     anchorScrolling: 'enabled', //needed for chapter selection and scroll
-    scrollOffset: [0, 57],
+    scrollOffset: [0, 120],
     relativeLinkResolution: 'legacy',
     onSameUrlNavigation: 'reload' // necessary for history books to load properly //nope this is not true
 })

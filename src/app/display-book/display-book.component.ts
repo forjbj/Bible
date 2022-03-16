@@ -34,7 +34,8 @@ public routedLink = false; //Needed to test for outside links including search l
     this.bibleService.chapterButton = true;
     this.bibleService.chapterNumber = localStorage.getItem('curChap');
 
-    this.activatedRoute.fragment.subscribe(fragment => { 
+
+      let fragment = this.activatedRoute.snapshot.fragment;
       if (fragment && (this.bibleService.searchNavigate == false)){
       let frag = fragment.split('-')
       if (frag[3] != null){ // only if verse exists in route
@@ -49,7 +50,6 @@ public routedLink = false; //Needed to test for outside links including search l
         this.routedLink = true;
       } 
     }
-    });            
 
     this.renderedBook = wasm.render(this.bibleService.testament, this.bibleService.bookSelected);
     if (this.routedLink == false) {

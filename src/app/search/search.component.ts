@@ -80,7 +80,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.accuracy = +this.accuracy;
   }
   submitSearch(req: string) {
-    this.spinner = true
+    this.spinner = true; // run spinner animation
     setTimeout(() => {
       this.bibleService.searchRequest = req;
       this.bibleService.searchResults = wasm.search( this.checkedNumber, req, this.accuracy)

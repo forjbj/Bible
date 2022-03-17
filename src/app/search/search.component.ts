@@ -85,7 +85,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       this.bibleService.searchRequest = req;
       this.bibleService.searchResults = wasm.search( this.checkedNumber, req, this.accuracy)
       this.spinner = false;
-    }, 1000); // give it a moment to redraw
+    }, 500); // give it a moment to redraw
     window.scrollTo(0,0); // bring new search to top of page
   }
   @HostListener('window:scroll', []) scrolled() {    

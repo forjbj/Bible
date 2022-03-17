@@ -14,6 +14,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   public checkedNumber: number = 2;
 
+  public spinner = false;
+
   testaments = [    
     { id: 0, label: "Old Testament" },
     { id: 1, label: "New Testament" },
@@ -78,9 +80,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.accuracy = +this.accuracy;
   }
   submitSearch(req: string) {
+    this.spinner = true
+    setTimeout(() => {
       this.bibleService.searchRequest = req;
       this.bibleService.searchResults = wasm.search( this.checkedNumber, req, this.accuracy)
-      window.scrollTo(0,0); // bring new search to top of page
+      this.spinner = false;
+    }, 1000); // give it a moment to redraw
+    window.scrollTo(0,0); // bring new search to top of page
   }
   @HostListener('window:scroll', []) scrolled() {    
     // keep position in case of return

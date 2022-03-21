@@ -102,7 +102,7 @@ public routedLink = false; //Needed to test for outside links including search l
     if (this.routedLink == true) {
       let target = document.getElementById(this.fragString);
       target.classList.add("activatedLink");
-      setTimeout( function(){target.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})}, 100); //needed as it doesn't work on chrome without setTimeout
+      setTimeout( function(){target.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})}, 50); //needed as it doesn't work on chrome without setTimeout
     } else { //only scroll if not an outside link
       // get scroll position (Y offset) from local storage and scroll to it -THIS MUST GO HERE OR SCROLLING TO OLD POSITION DOESN'T WORK
       window.scroll(0, Number(localStorage.getItem('curScrollY')));

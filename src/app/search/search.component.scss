@@ -114,13 +114,13 @@
 
 //spinner for search
 .spinnerBackground {
-    height: 7rem;
+    height: 4rem;
     width: 100%;
     padding-top: 1rem;
     position: absolute;
   .circleSpinner {
-    height: 5rem;
-    width: 5rem;
+    height: 3rem;
+    width: 3rem;
     border: 7px ridge transparent; //pixels used as rem units give an uneven, weird shape
     border-top:  7px  solid #770000;
     border-radius: 50%;

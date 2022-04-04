@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public checkedNumber: number = 2;
 
   public worker: any;
-  public spinner = true;
+  public spinner = false;
 
   testaments = [    
     { id: 0, label: "Old Testament" },

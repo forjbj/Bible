@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   public checkedNumber: number = 2;
 
+  public worker: any;
   public spinner = false;
 
   testaments = [    
@@ -41,7 +42,11 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.title.setTitle('Bible Search');
     this.meta.addTag({ name: 'description', content: 'Search for words in the bible offline; uses WebAssembly for faster results' });
 
-
+    // Worker needs to be created immediately or will only work with double click
+    if (typeof Worker !== 'undefined') {
+      // Create a new
+      this.worker = new Worker(new URL('./search.worker', import.meta.url));
+    }
   }
   ngOnInit(): void {
   }
@@ -81,11 +86,22 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
   submitSearch(req: string) {
     this.spinner = true; // run spinner animation
-    setTimeout(() => {
-      this.bibleService.searchRequest = req;
-      this.bibleService.searchResults = wasm.search( this.checkedNumber, req, this.accuracy)
-      this.spinner = false;
-    }, 100); // give it a moment to redraw
+    if (typeof Worker !== 'undefined') {
+      this.worker.onmessage = ({ data }) => {
+        this.bibleService.searchRequest = req;
+        this.bibleService.searchResults = data;
+        this.spinner = false;
+      };
+      this.worker.postMessage(wasm.search(this.checkedNumber, req, this.accuracy));
+    } else {
+      // Web workers are not supported in this environment.
+      console.log('thread not used');
+      setTimeout(() => {
+        this.bibleService.searchRequest = req;
+        this.bibleService.searchResults = wasm.search( this.checkedNumber, req, this.accuracy)
+        this.spinner = false;
+      }, 100); // give it a moment to redraw
+    }
     window.scrollTo(0,0); // bring new search to top of page
   }
   @HostListener('window:scroll', []) scrolled() {    
@@ -93,4 +109,3 @@ export class SearchComponent implements OnInit, AfterViewInit {
     localStorage.setItem('searchScrollY', window.pageYOffset.toString());
   }
 }
-

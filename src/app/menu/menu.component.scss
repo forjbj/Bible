@@ -11,6 +11,8 @@
   border-left: 1px solid var(--ink);
   background-color: var(--nav);
   color: var(--zInk);
+  max-height: 87vh;
+  overflow-y: scroll;
  // top: 2.2rem;
   transition: all 0.3s;
   hr {

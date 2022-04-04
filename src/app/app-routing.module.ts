@@ -42,7 +42,8 @@ const routes: Routes = [
     anchorScrolling: 'enabled', //needed for chapter selection and scroll
     scrollOffset: [0, 120],
     relativeLinkResolution: 'legacy',
-    onSameUrlNavigation: 'reload' // necessary for history books to load properly //nope this is not true
+    onSameUrlNavigation: 'reload', // necessary for history books to load properly //nope this is not true
+    scrollPositionRestoration: 'enabled', //necessary for scroll to top on route; doesn't work in firefox
 })
   ],
   exports: [RouterModule]

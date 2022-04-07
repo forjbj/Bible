@@ -30,6 +30,8 @@ public routedLink = false; //Needed to test for outside links including search l
                private activatedRoute: ActivatedRoute, ) { 
 
     this.meta.addTag({ name: 'description', content: 'King James Version (Cambridge) Bible; utilising WebAssembly for speed.' });
+    title.setTitle('Bible - King James Version');
+
     this.bibleService.pageTitle = this.bibleService.title;
     this.bibleService.chapterButton = true;
     this.bibleService.chapterNumber = localStorage.getItem('curChap');

@@ -65,29 +65,4 @@ export class MenuComponent implements OnInit {
       localStorage.setItem('leftHanded', 'no');
     }
   }
-    /*
-      let menu = document.getElementById('menu') as HTMLInputElement;
-    let leftHand = document.getElementById('leftHand') as HTMLInputElement;      
-      if (leftHand.checked) {
-        menu.setAttribute('leftHanded', 'yes'); 
-        localStorage.setItem('leftHanded', 'yes');
-        let menuButton = document.getElementById('menuButton') as HTMLInputElement;
-        menuButton.setAttribute('leftHanded', 'yes');
-        if (document.getElementById('description') ) {
-          let desc = document.getElementById('description') as HTMLInputElement;
-          desc.setAttribute('leftHanded', 'yes');
-        }
-    }
-    else {
-        menu.setAttribute('leftHanded', 'no'); 
-        localStorage.setItem('leftHanded', 'no');
-        let menuButton = document.getElementById('menuButton') as HTMLInputElement;
-        menuButton.setAttribute('leftHanded', 'no');
-        if (document.getElementById('description') ) {
-          let desc = document.getElementById('description') as HTMLInputElement;
-          desc.setAttribute('leftHanded', 'no');
-        }
-    }   
-  };
-  */
 }

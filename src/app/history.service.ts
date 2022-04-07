@@ -111,9 +111,15 @@ export class HistoryService {
     localStorage.setItem('curTestamentIndex', (this.bibleService.testament).toString());
     localStorage.setItem('curBookIndex', (this.bibleService.bookSelected).toString());
    
-    //hack to force angular to reload with the above parameters - route to '/testament' then back
+    /*
+      hack to force angular to reload with the above parameters - route to '/testament' then back
+      Gives brief 404 error in tab title when selecting from menu - history; but corrects on loaded page
+    */
     this.router.navigateByUrl('/testament', { skipLocationChange: true }).then(() => {
-    //Below works, however gives an error code 404 from static server (github pages) on reload if - this.router.navigate(['/book', this.bibleService.title]);  
+    /*
+      Below works, however gives an error code 404 from static server (github pages) on 
+      reload if - this.router.navigate(['/book', this.bibleService.title]);  
+    */
       this.router.navigate(['/book']);  
     }); 
   }

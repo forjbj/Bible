@@ -64,11 +64,6 @@ public routedLink = false; //Needed to test for outside links including search l
 
     // store book for loading on return, if not chosen from history -MUST BE UNDER ngAfterViewInit 
     this.historyService.storeBooks();
-    
-    // change tab title on load and chapter number
-    this.bibleService.chapterNumber = localStorage.getItem('curChap');
-    let tabTitle = (this.bibleService.title).concat(' ',this.bibleService.chapterNumber);
-    this.title.setTitle(tabTitle);
 
     // save chapters on scroll
     const chapters = this.document.querySelectorAll("section");

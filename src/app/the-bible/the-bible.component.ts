@@ -17,7 +17,7 @@ export class TheBibleComponent implements OnInit, AfterViewInit {
               public title: Title,
               ) {
     
-    title.setTitle('Bible - King James Version');
+    title.setTitle('Bible - King James Version - PWA');
     this.meta.addTag({ name: 'description', content: 'Bible application with History and Search functionality.'});
 
   } 

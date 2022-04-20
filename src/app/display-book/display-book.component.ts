@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DisplayBookComponent implements OnInit, AfterViewInit {
 
-public renderedBook: string;
+public renderedBook: string ;
 public scroll: number;
 private observer: IntersectionObserver;
 
@@ -28,17 +28,15 @@ public routedLink = false; //Needed to test for outside links including search l
                public meta: Meta, 
                @Inject(DOCUMENT) public document: Document,
                private activatedRoute: ActivatedRoute, ) { 
+              
+    this.bibleService.spinner = true;
+    this.bibleService.spinnerTitle = "Rendering";
 
     this.meta.addTag({ name: 'description', content: 'King James Version (Cambridge) Bible; utilising WebAssembly for speed.' });
     title.setTitle('Bible - King James Version - PWA');
 
-    this.bibleService.pageTitle = this.bibleService.title;
-    this.bibleService.chapterButton = true;
-    this.bibleService.chapterNumber = localStorage.getItem('curChap');
-
-
-      let fragment = this.activatedRoute.snapshot.fragment;
-      if (fragment && (this.bibleService.searchNavigate == false)){
+    let fragment = this.activatedRoute.snapshot.fragment;
+    if (fragment && (this.bibleService.searchNavigate == false)){
       let frag = fragment.split('-')
       if (frag[3] != null){ // only if verse exists in route
         localStorage.setItem( 'curTestamentIndex', (frag[0]));
@@ -54,16 +52,23 @@ public routedLink = false; //Needed to test for outside links including search l
     }
 
     this.renderedBook = wasm.render(this.bibleService.testament, this.bibleService.bookSelected);
+
     if (this.routedLink == false) {
       this.historyService.newBook();
     }
+    this.bibleService.pageTitle = this.bibleService.title;
+    this.bibleService.chapterButton = true;
+    this.bibleService.chapterNumber = localStorage.getItem('curChap');
   }   
   
   ngOnInit() {} 
 
   ngAfterViewInit() {
-
-
+    //turn off spinner
+    setTimeout(() => {
+      this.bibleService.spinner = false;
+    }, 10);
+    
     // store book for loading on return, if not chosen from history -MUST BE UNDER ngAfterViewInit 
     this.historyService.storeBooks();
 
@@ -95,7 +100,7 @@ public routedLink = false; //Needed to test for outside links including search l
       this.observer.observe(chapter);
     }) 
 
-    // add highlighting if come from link and scroll
+    // add highlighting if come from link and scroll to it
     if (this.routedLink == true) {
       let target = document.getElementById(this.fragString);
       target.classList.add("activatedLink");
@@ -104,6 +109,7 @@ public routedLink = false; //Needed to test for outside links including search l
       // get scroll position (Y offset) from local storage and scroll to it -THIS MUST GO HERE OR SCROLLING TO OLD POSITION DOESN'T WORK
       window.scroll(0, Number(localStorage.getItem('curScrollY')));
     }
+
   }
 
   @HostListener('window:scroll', []) scrolled() {    
@@ -120,3 +126,4 @@ public routedLink = false; //Needed to test for outside links including search l
     this.historyService.savePosition();
     } 
 }
+

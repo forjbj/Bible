@@ -37,6 +37,9 @@ export class BibleService {
   public chapterButton: boolean;
   public chapterNumber: string;
 
+  //variable for spinner animation
+  public spinner: boolean = false;
+  public spinnerTitle: string;
  
     constructor() {}
 }

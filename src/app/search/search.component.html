@@ -20,9 +20,6 @@
         </div>
         <hr>
         <br>
-        <div *ngIf="spinner == true" class="spinnerBackground">
-            <div class="circleSpinner"></div>
-        </div>
     </div>
     <div id="searchResults" class="searchResults" [innerHTML] = "bibleService.searchResults |safe: 'html'"></div>
 </div>

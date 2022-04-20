@@ -1,10 +1,17 @@
 <div class="chaptersShow"
       (click) = "bibleService.showChapters = !bibleService.showChapters; ">
   <hr>
-  <div class="chapterTitle">
-    <p>Number</p>
+  <div *ngIf = "bibleService.title != 'Psalms'; else notChapter">
+    <p class = "chapterTitle">{{bibleService.title}}</p>
+    <p class = "numberTitle">Chapter</p>
   </div>
-  <hr>
+  <ng-template #notChapter>
+    <div>
+      <p class = "chapterTitle">{{bibleService.title}}</p>
+      <p class = "numberTitle">Psalm</p>
+    </div>
+  </ng-template>
+
   <div  class="chapterGrid">
     <ng-container 
     *ngFor = "let chapters of bibleService.bible[bibleService.testament].books[bibleService.bookSelected].chapters" >

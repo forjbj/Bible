@@ -15,7 +15,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   public checkedNumber: number = 2;
 
   public worker: any;
-  public spinner = false;
 
   testaments = [    
     { id: 0, label: "Old Testament" },
@@ -52,6 +51,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     window.scroll(0, Number(localStorage.getItem('searchScrollY')));
+    this.bibleService.spinner = false;
   }
   ngAfterViewChecked() {
     //hack needed to add functionality to innerhtml from Rust/wasm
@@ -71,7 +71,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
             this.router.navigate(['book'], {fragment: frag}); //works
             //the following is necessary or doesn't work;
             document.getElementById(frag).classList.add("activatedLink"); //necessary or doesn't work; thinking it's a timing thing
-            document.getElementById(frag).scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})           
+            document.getElementById(frag).scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});          
           });
         });
       }
@@ -85,12 +85,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.accuracy = +this.accuracy;
   }
   submitSearch(req: string) {
-    this.spinner = true; // run spinner animation
+    this.bibleService.spinner = true; // run spinner animation
+    this.bibleService.spinnerTitle = "Searching"
     if (typeof Worker !== 'undefined') {
       this.worker.onmessage = ({ data }) => {
         this.bibleService.searchRequest = req;
         this.bibleService.searchResults = data;
-        this.spinner = false;
+        this.bibleService.spinner = false;
       };
       this.worker.postMessage(wasm.search(this.checkedNumber, req, this.accuracy));
     } else {
@@ -99,7 +100,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.bibleService.searchRequest = req;
         this.bibleService.searchResults = wasm.search( this.checkedNumber, req, this.accuracy)
-        this.spinner = false;
+        this.bibleService.spinner = false;
       }, 100); // give it a moment to redraw
     }
     window.scrollTo(0,0); // bring new search to top of page

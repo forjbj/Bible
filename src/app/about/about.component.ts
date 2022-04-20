@@ -15,6 +15,7 @@ export class AboutComponent implements OnInit {
     //nav titles and buttons
     this.bibleService.pageTitle = "About";
     this.bibleService.chapterButton = false;
+    this.bibleService.spinner = false;
     
     this.title.setTitle('About');
     this.meta.addTag({ name: 'description', content: 'About this Application; including version history and repository location' });

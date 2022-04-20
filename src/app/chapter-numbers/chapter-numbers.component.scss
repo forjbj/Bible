@@ -24,7 +24,15 @@
     }
 }
 .chapterTitle {
+    font-size: 1.3rem;
     font-variant: small-caps;
+    text-shadow: 1px 1px var(--gridColor);
+    padding-bottom: 0.5rem;
+}
+.numberTitle {
+    font-variant: small-caps;
+    text-shadow: 1px 1px var(--gridColor);
+    padding-bottom: 0.5rem;
 }
 .chapterGrid {
     max-height: calc(100vh /2);

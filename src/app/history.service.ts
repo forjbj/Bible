@@ -53,6 +53,8 @@ export class HistoryService {
     this.bibleService.menuHistoryBook = true;
     this.bibleService.showChapters = false;
     this.bibleService.displayMenu = false;
+    this.bibleService.spinner = true;
+    this.bibleService.spinnerTitle = "Restoring"
     
     switch (book) {
       case 'cur':
@@ -70,6 +72,7 @@ export class HistoryService {
 
         this.bibleService.testament = Number(this.secTestamentArr);
         this.bibleService.bookSelected = Number(this.secBookArr);
+        this.bibleService.chapterNumber = this.secSavedChap;
         localStorage.setItem('curChap', this.secSavedChap);
         localStorage.setItem('curScrollY', this.secScrollY);
 
@@ -92,6 +95,7 @@ export class HistoryService {
 
         this.bibleService.testament = Number(localStorage.getItem('thirdTestamentIndex'));
         this.bibleService.bookSelected = Number(localStorage.getItem('thirdBookIndex'));
+        this.bibleService.chapterNumber = localStorage.getItem('thirdSavedChap');
         localStorage.setItem('curChap', localStorage.getItem('thirdSavedChap'));
         localStorage.setItem('curScrollY', localStorage.getItem('thirdScrollYSaved'));
 
@@ -115,13 +119,15 @@ export class HistoryService {
       hack to force angular to reload with the above parameters - route to '/testament' then back
       Gives brief 404 error in tab title when selecting from menu - history; but corrects on loaded page
     */
-    this.router.navigateByUrl('/testament', { skipLocationChange: true }).then(() => {
-    /*
-      Below works, however gives an error code 404 from static server (github pages) on 
-      reload if - this.router.navigate(['/book', this.bibleService.title]);  
-    */
-      this.router.navigate(['/book']);  
-    }); 
+    setTimeout(() => {
+      this.router.navigateByUrl('/testament', { skipLocationChange: true }).then(() => {
+      /*
+        Below works, however gives an error code 404 from static server (github pages) on 
+        reload if - this.router.navigate(['/book', this.bibleService.title]);  
+      */
+        this.router.navigate(['/book']);  
+      }); 
+    }, 10); 
   }
 
   newBook() {
@@ -132,7 +138,8 @@ export class HistoryService {
                                     && (this.bibleService.menuHistoryBook == false )) {
         localStorage.setItem('curScrollY', '0');
         localStorage.setItem('curChap', '1');  
-        this.bibleService.showChapters = true;
+        setTimeout(()=> this.bibleService.showChapters = true),100; //fixes problem of loading chapter-numbers.component before wasm render is finished
+       // this.bibleService.showChapters = true; //Doesn't work as loads chapter-numbers.component before wasm render is finished
     } 
   }
 

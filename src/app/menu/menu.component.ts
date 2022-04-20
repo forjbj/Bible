@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BibleService } from '../bible.service';
 import { HistoryService } from '../history.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,8 @@ import { HistoryService } from '../history.service';
 export class MenuComponent implements OnInit {
   
   constructor(public bibleService: BibleService,
-              public historyService: HistoryService ) {
+              public historyService: HistoryService,
+              private router: Router, ) {
 
     this.bibleService.leftHandOn = localStorage.getItem('leftHanded');
 
@@ -64,5 +66,15 @@ export class MenuComponent implements OnInit {
       grid.setAttribute('leftHanded', 'no'); 
       localStorage.setItem('leftHanded', 'no');
     }
+  }
+  wordSearch(){
+    this.bibleService.menuHistoryBook = false;
+    this.bibleService.displayMenu = false;
+    this.bibleService.spinner = true;
+    this.bibleService.spinnerTitle = "Restoring";
+    //setTimeout needed for spinner to start
+    setTimeout(() => {
+      this.router.navigate(['search']); //works
+    }, 10);
   }
 }

@@ -51,7 +51,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     window.scroll(0, Number(localStorage.getItem('searchScrollY')));
-    this.bibleService.spinner = false;
+    this.bibleService.spinner = false; //needed for reopening search page
   }
   ngAfterViewChecked() {
     //hack needed to add functionality to innerhtml from Rust/wasm

@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { BibleService } from '../bible.service';
 import { HistoryService } from '../history.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-the-bible',
@@ -15,7 +16,7 @@ export class TheBibleComponent implements OnInit, AfterViewInit {
               public historyService: HistoryService,
               public meta: Meta,
               public title: Title,
-              ) {
+              private router: Router,) {
     
     title.setTitle('Bible - King James Version - PWA');
     this.meta.addTag({ name: 'description', content: 'Bible application with History and Search functionality.'});
@@ -34,5 +35,15 @@ export class TheBibleComponent implements OnInit, AfterViewInit {
   
   ngAfterViewInit() {
   }
-
+  restoreBook () {
+    this.bibleService.spinner = true;
+    this.bibleService.spinnerTitle = "Restoring";
+    this.bibleService.testament = Number(localStorage.getItem('currentTestamentIndex'));
+    this.bibleService.displayMenu = false;
+    this.bibleService.showChapters = false;
+    //setTimeout needed for spinner to start
+    setTimeout(() => {
+      this.router.navigate(['./book']); //works
+    }, 10);
+  }
 }

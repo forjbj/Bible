@@ -24,7 +24,7 @@
         </div>
         <ng-template #version >
           <button class = "titleButton"
-            [routerLink] = "['./book']">
+            (click) = "restoreBook();">
             Back to {{bibleService.title}}
           </button>
         </ng-template>

@@ -64,7 +64,7 @@ public routedLink = false; //Needed to test for outside links including search l
   ngOnInit() {} 
 
   ngAfterViewInit() {
-    //turn off spinner
+    //turn off spinner, setTimeout is necessary or doesn't work
     setTimeout(() => {
       this.bibleService.spinner = false;
     }, 10);

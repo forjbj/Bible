@@ -90,6 +90,7 @@
     grid-template-columns: minmax(min-content, 10%) 1fr;
     padding: 0;
     text-align: left;
+    align-items: center;
     &:nth-child(odd) {
         background-color: var(--gridColor);
     }
@@ -102,7 +103,6 @@
     font-variant: small-caps;
     text-align: right;
     color: var(--scriptNum);
-    margin: auto 0;
 }
 .scrResults {
     font-size: 1.1rem;

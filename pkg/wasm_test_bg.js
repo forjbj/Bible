@@ -201,27 +201,6 @@ export function __wbindgen_object_drop_ref(arg0) {
     takeObject(arg0);
 };
 
-export function __wbg_new_693216e109162396() {
-    var ret = new Error();
-    return addHeapObject(ret);
-};
-
-export function __wbg_stack_0ddaca5d1abfb52f(arg0, arg1) {
-    var ret = getObject(arg1).stack;
-    var ptr0 = passStringToWasm0(ret, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-    var len0 = WASM_VECTOR_LEN;
-    getInt32Memory0()[arg0 / 4 + 1] = len0;
-    getInt32Memory0()[arg0 / 4 + 0] = ptr0;
-};
-
-export function __wbg_error_09919627ac0992f5(arg0, arg1) {
-    try {
-        console.error(getStringFromWasm0(arg0, arg1));
-    } finally {
-        wasm.__wbindgen_free(arg0, arg1);
-    }
-};
-
 export function __wbindgen_object_clone_ref(arg0) {
     var ret = getObject(arg0);
     return addHeapObject(ret);

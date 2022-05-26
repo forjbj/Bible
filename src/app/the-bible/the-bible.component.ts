@@ -38,7 +38,7 @@ export class TheBibleComponent implements OnInit, AfterViewInit {
   restoreBook () {
     this.bibleService.spinner = true;
     this.bibleService.spinnerTitle = "Restoring";
-    this.bibleService.testament = Number(localStorage.getItem('currentTestamentIndex'));
+    //this.bibleService.testament = Number(localStorage.getItem('currentTestamentIndex'));
     this.bibleService.displayMenu = false;
     this.bibleService.showChapters = false;
     //setTimeout needed for spinner to start

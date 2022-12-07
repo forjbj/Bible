@@ -17,25 +17,21 @@ extern "C" {
 
 #[wasm_bindgen]
 pub fn render (test: usize, book: usize, ) -> String {  //need to be string for serde_json to index
-    let result: String;
+    
+    let file = read_file();
+    let contents: jsonValue = serde_json::from_str(&file.as_string().expect("Can't read json")).unwrap();
+    
     if test == 0 && book == 18 { //Psalms selected
-        result = psalms_book()
+        psalms_book(&contents)
     } else {
-        result = not_psalms( test, book )
+        not_psalms( test, book, &contents )
     }
-    return result;
 }
 
-fn psalms_book() -> String {
-    let file = read_file();
-
-    let contents = file.as_string().expect("Can't read json");
-    let res = serde_json::from_str(&contents).unwrap();
-
-    let p: jsonValue = res;
-
+fn psalms_book(contents:&jsonValue) -> String {
+  
     //because of type change from javascript to rust: first Array in Object has the items labelled "0" and "1" (numbers in strings) **CAN'T CHANGE JSON
-    let bible_book = &p["0"]["books"][18]; //Psalms
+    let bible_book = &contents["0"]["books"][18]; //Psalms
 
     let current = bible_book["chapters"].as_array().unwrap();
 
@@ -74,16 +70,10 @@ fn psalms_book() -> String {
     result.push_str("<hr>");
     return result;
 }
-fn not_psalms( test: usize, book: usize ) -> String {
-    let file = read_file();
-
-    let contents = file.as_string().expect("Can't read json");
-    let res = serde_json::from_str(&contents).unwrap();
-
-    let p: jsonValue = res;
+fn not_psalms( test: usize, book: usize, contents:&jsonValue ) -> String {
 
     //because of type change from javascript to rust: first Array in Object has the items labelled "0" and "1" (numbers in strings) **CAN'T CHANGE JSON
-    let bible_book = &p[format!("{}", &test)]["books"][&book];
+    let bible_book = &contents[format!("{}", &test)]["books"][&book];
 
     let current = bible_book["chapters"].as_array().unwrap();
     let mut result: String;
@@ -144,6 +134,8 @@ pub fn search (searches: usize, inp: String, acc: usize) -> String {
     }
 
     let file = read_file();
+    let contents: jsonValue = serde_json::from_str(&file.as_string().expect("Can't read json")).unwrap();
+
     let mut results = format!("<br>");
 
     let re = Regex::new(r"[[:alpha:]]+").unwrap(); // only words to search for
@@ -158,13 +150,9 @@ pub fn search (searches: usize, inp: String, acc: usize) -> String {
         return results_fin;
     } 
 
-    let contents = file.as_string().expect("Can't read json");
-    let res = serde_json::from_str(&contents).unwrap();
-    let p: jsonValue = res;
-
     let mut search_num = 0;
     while i < j {
-        let json_bible = p[format!("{}", i)]["books"].as_array().unwrap();
+        let json_bible = contents[format!("{}", i)]["books"].as_array().unwrap();
         for (j, books) in json_bible.iter().enumerate() {
             for chapters in books["chapters"].as_array().unwrap() {
                 for verses in chapters["verses"].as_array().unwrap() {
@@ -274,13 +262,10 @@ pub fn render_widget() -> String {  //need to be string for serde_json to index
 
     let file = read_file();
 
-    let contents = file.as_string().expect("Can't read json");
-    let res = serde_json::from_str(&contents).unwrap();
-
-    let p: jsonValue = res;
+    let contents: jsonValue = serde_json::from_str(&file.as_string().expect("Can't read json")).unwrap();
 
     //because of type change from javascript to rust: first Array in Object has the items labelled "0" and "1" (numbers in strings) **CAN'T CHANGE JSON
-    let bible_book = &p[format!("{}", &test)]["books"][&book];
+    let bible_book = &contents[format!("{}", &test)]["books"][&book];
 
     let current = bible_book["chapters"].as_array().unwrap();
     let num_chapters = current.len();

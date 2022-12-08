@@ -1,7 +1,7 @@
 {
   "configVersion": 1,
-  "timestamp": 1653607584665,
-  "index": "https://biblekjv.app/index.html",
+  "timestamp": 1670460940730,
+  "index": "./index.html",
   "assetGroups": [
     {
       "name": "app",
@@ -11,13 +11,13 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://biblekjv.app/559.16a7899f40193bf9.js",
-        "https://biblekjv.app/index.html",
-        "https://biblekjv.app/main.f435ed421f4a46b1.js",
-        "https://biblekjv.app/manifest.webmanifest",
-        "https://biblekjv.app/polyfills.8039e9928a9930ad.js",
-        "https://biblekjv.app/runtime.9639aeca6f68923d.js",
-        "https://biblekjv.app/styles.4d75145ba6fa6430.css"
+        "./559.16a7899f40193bf9.js",
+        "./index.html",
+        "./main.02deff2561689c64.js",
+        "./manifest.webmanifest",
+        "./polyfills.8039e9928a9930ad.js",
+        "./runtime.9639aeca6f68923d.js",
+        "./styles.4d75145ba6fa6430.css"
       ],
       "patterns": []
     },
@@ -29,43 +29,43 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://biblekjv.app/assets/bible/Bible.json",
-        "https://biblekjv.app/assets/icons/icon-128x128.png",
-        "https://biblekjv.app/assets/icons/icon-144x144.png",
-        "https://biblekjv.app/assets/icons/icon-152x152.png",
-        "https://biblekjv.app/assets/icons/icon-192x192.png",
-        "https://biblekjv.app/assets/icons/icon-384x384.png",
-        "https://biblekjv.app/assets/icons/icon-512x512.png",
-        "https://biblekjv.app/assets/icons/icon-72x72.png",
-        "https://biblekjv.app/assets/icons/icon-96x96.png",
-        "https://biblekjv.app/assets/search.svg",
-        "https://biblekjv.app/assets/search_neutral.svg",
-        "https://biblekjv.app/icon-192x192.321592a8a2f8ef9a.png"
+        "./assets/bible/Bible.json",
+        "./assets/icons/icon-128x128.png",
+        "./assets/icons/icon-144x144.png",
+        "./assets/icons/icon-152x152.png",
+        "./assets/icons/icon-192x192.png",
+        "./assets/icons/icon-384x384.png",
+        "./assets/icons/icon-512x512.png",
+        "./assets/icons/icon-72x72.png",
+        "./assets/icons/icon-96x96.png",
+        "./assets/search.svg",
+        "./assets/search_neutral.svg",
+        "./icon-192x192.321592a8a2f8ef9a.png"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "https://biblekjv.app/559.16a7899f40193bf9.js": "0dcb7940808c59527a35ac7447e6616a6dca8ace",
-    "https://biblekjv.app/assets/bible/Bible.json": "2efdfc9890c2846eb518c3c5eeb64e1c0277b0fc",
-    "https://biblekjv.app/assets/icons/icon-128x128.png": "154210bd7c42f9a8a66a3f03db91f23bb9fd93d6",
-    "https://biblekjv.app/assets/icons/icon-144x144.png": "32823e2b00a262d790ac542ac1a2e1a05f940d5f",
-    "https://biblekjv.app/assets/icons/icon-152x152.png": "c1e71c9855501ee5b4a52325a71f968798454ce4",
-    "https://biblekjv.app/assets/icons/icon-192x192.png": "177df93d4bc990b4551a7ca083f211364dc4b5a8",
-    "https://biblekjv.app/assets/icons/icon-384x384.png": "6d3c603ce292a9cccf9253d594cd225157245ffe",
-    "https://biblekjv.app/assets/icons/icon-512x512.png": "19c2e4e2b85379f97e641799c01a93103ba20f49",
-    "https://biblekjv.app/assets/icons/icon-72x72.png": "b738d6770921684201861f5ae71a266e7d17c7be",
-    "https://biblekjv.app/assets/icons/icon-96x96.png": "38ce9f228ec6626c849ea446da784ebd94f709a9",
-    "https://biblekjv.app/assets/search.svg": "f0b95bb75f03fa6b0f0c8ddf22fa02e5d662a06d",
-    "https://biblekjv.app/assets/search_neutral.svg": "3f54ae72cdb1ef2adc88e9a28bf417d5e455ae50",
-    "https://biblekjv.app/icon-192x192.321592a8a2f8ef9a.png": "177df93d4bc990b4551a7ca083f211364dc4b5a8",
-    "https://biblekjv.app/index.html": "40d50876cbc0d268074ebc0deef739cd0d84c4b9",
-    "https://biblekjv.app/main.f435ed421f4a46b1.js": "8cc270e21d0a07ecf361eee76c1c033bd3ecb3a3",
-    "https://biblekjv.app/manifest.webmanifest": "f1bc74ba2022a5deb5c2d6b44839105d4456b335",
-    "https://biblekjv.app/polyfills.8039e9928a9930ad.js": "7e2bb62ead0026534fc1c7ce428605d93eed55b0",
-    "https://biblekjv.app/runtime.9639aeca6f68923d.js": "eb9afd29a6431fc2a86a90f0c0d261d3e6198239",
-    "https://biblekjv.app/styles.4d75145ba6fa6430.css": "2566382e9178ef9c00c89d7f6eb361b5d6466f15"
+    "./559.16a7899f40193bf9.js": "0dcb7940808c59527a35ac7447e6616a6dca8ace",
+    "./assets/bible/Bible.json": "2efdfc9890c2846eb518c3c5eeb64e1c0277b0fc",
+    "./assets/icons/icon-128x128.png": "154210bd7c42f9a8a66a3f03db91f23bb9fd93d6",
+    "./assets/icons/icon-144x144.png": "32823e2b00a262d790ac542ac1a2e1a05f940d5f",
+    "./assets/icons/icon-152x152.png": "c1e71c9855501ee5b4a52325a71f968798454ce4",
+    "./assets/icons/icon-192x192.png": "177df93d4bc990b4551a7ca083f211364dc4b5a8",
+    "./assets/icons/icon-384x384.png": "6d3c603ce292a9cccf9253d594cd225157245ffe",
+    "./assets/icons/icon-512x512.png": "19c2e4e2b85379f97e641799c01a93103ba20f49",
+    "./assets/icons/icon-72x72.png": "b738d6770921684201861f5ae71a266e7d17c7be",
+    "./assets/icons/icon-96x96.png": "38ce9f228ec6626c849ea446da784ebd94f709a9",
+    "./assets/search.svg": "f0b95bb75f03fa6b0f0c8ddf22fa02e5d662a06d",
+    "./assets/search_neutral.svg": "3f54ae72cdb1ef2adc88e9a28bf417d5e455ae50",
+    "./icon-192x192.321592a8a2f8ef9a.png": "177df93d4bc990b4551a7ca083f211364dc4b5a8",
+    "./index.html": "11d14ef6655c47f7e3b0e21ab9f386387b19c15b",
+    "./main.02deff2561689c64.js": "097ba02588510d66bff99718ffa8e77c88203fd4",
+    "./manifest.webmanifest": "f1bc74ba2022a5deb5c2d6b44839105d4456b335",
+    "./polyfills.8039e9928a9930ad.js": "7e2bb62ead0026534fc1c7ce428605d93eed55b0",
+    "./runtime.9639aeca6f68923d.js": "eb9afd29a6431fc2a86a90f0c0d261d3e6198239",
+    "./styles.4d75145ba6fa6430.css": "2566382e9178ef9c00c89d7f6eb361b5d6466f15"
   },
   "navigationUrls": [
     {

@@ -31,9 +31,9 @@ pub fn render (test: usize, book: usize, ) -> String {  //need to be string for 
 fn psalms_book(contents:&jsonValue) -> String {
   
     //because of type change from javascript to rust: first Array in Object has the items labelled "0" and "1" (numbers in strings) **CAN'T CHANGE JSON
-    let bible_book = &contents["0"]["books"][18]; //Psalms
+    //let bible_book = &contents["0"]["books"][18]; //Psalms
 
-    let current = bible_book["chapters"].as_array().unwrap();
+    let current = contents["0"]["books"][18]["chapters"].as_array().unwrap();
 
     let mut result: String = format!("<div class=\"headings\"><h4>THE</h4><h2>BOOK OF PSALMS</h2></div>");
     let mut section: String;
@@ -46,18 +46,14 @@ fn psalms_book(contents:&jsonValue) -> String {
 
         for verse in psalm["verses"].as_array().unwrap() {
             if verse["ver"] == 1 {
-                let desc = format!("<div class=\"psalm fontType\">{}</div>",verse["description"].as_str().unwrap()); //unwrap necessary to remove ""
-                section.push_str(&desc);
-                let first = format!("<div id = \"0-18-{0}-1\"><a href = \"../book#0-18-{0}-1\"><p class=\"firstVerse fontType\">{1}</p></a></div>", psalm["chapter"], verse["scr"].as_str().unwrap());
-                section.push_str(&first);
+                section.push_str(&format!("<div class=\"psalm fontType\">{}</div>",verse["description"].as_str().unwrap())); //unwrap necessary to remove ""
+                section.push_str(&format!("<div id = \"0-18-{0}-1\"><a href = \"../book#0-18-{0}-1\"><p class=\"firstVerse fontType\">{1}</p></a></div>", psalm["chapter"], verse["scr"].as_str().unwrap()));
             } else {     
                 if verse["description"] != jsonNull {  // needed for psalm 119
-                    let desc = format!("<p class=\"psalm fontType\">{}</p>",verse["description"].as_str().unwrap()); //unwrap necessary to remove ""
-                    section.push_str(&desc);
+                    section.push_str(&format!("<p class=\"psalm fontType\">{}</p>",verse["description"].as_str().unwrap()));
                 }
-                let script = format!("<div id = \"0-18-{0}-{1}\" class = \"verses\"><a href = \"../book#0-18-{0}-{1}\" ><p class=\"verseNumber fontType\">{1}</p></a>
-                                        <a href = \"../book#0-18-{0}-{1}\"><p class = \"scripture fontType\">{2}</p></a></div>", psalm["chapter"], verse["ver"], verse["scr"].as_str().unwrap());
-                section.push_str(&script);
+                section.push_str(&format!("<div id = \"0-18-{0}-{1}\" class = \"verses\"><a href = \"../book#0-18-{0}-{1}\" ><p class=\"verseNumber fontType\">{1}</p></a>
+                <a href = \"../book#0-18-{0}-{1}\"><p class = \"scripture fontType\">{2}</p></a></div>", psalm["chapter"], verse["ver"], verse["scr"].as_str().unwrap()));
             }
         }
         if psalm != current.last().unwrap() {
@@ -89,12 +85,10 @@ fn not_psalms( test: usize, book: usize, contents:&jsonValue ) -> String {
 
         for verse in chapter["verses"].as_array().unwrap() {
             if verse["ver"] == 1 {
-                let first = format!("<div id = \"{0}-{1}-{2}-1\"><a href = \"../book#{0}-{1}-{2}-1\"><p class=\"firstVerse fontType\">{3}</p></a></div>", &test, &book, chapter["chapter"], verse["scr"].as_str().unwrap());
-                section.push_str(&first);
+                section.push_str(&format!("<div id = \"{0}-{1}-{2}-1\"><a href = \"../book#{0}-{1}-{2}-1\"><p class=\"firstVerse fontType\">{3}</p></a></div>", &test, &book, chapter["chapter"], verse["scr"].as_str().unwrap()));
             } else {     
-                let script = format!("<div id = \"{0}-{1}-{2}-{3}\" class = \"verses\"><a href = \"../book#{0}-{1}-{2}-{3}\" ><p class=\"verseNumber fontType\">{3}</p></a>
-                                        <a href = \"../book#{0}-{1}-{2}-{3}\"><p class = \"scripture fontType\">{4}</p></a></div>", &test, &book, chapter["chapter"], verse["ver"], verse["scr"].as_str().unwrap());
-                section.push_str(&script);
+                section.push_str(&format!("<div id = \"{0}-{1}-{2}-{3}\" class = \"verses\"><a href = \"../book#{0}-{1}-{2}-{3}\" ><p class=\"verseNumber fontType\">{3}</p></a>
+                <a href = \"../book#{0}-{1}-{2}-{3}\"><p class = \"scripture fontType\">{4}</p></a></div>", &test, &book, chapter["chapter"], verse["ver"], verse["scr"].as_str().unwrap()));
             }
         }
         if chapter != current.last().unwrap() {
@@ -115,7 +109,6 @@ fn not_psalms( test: usize, book: usize, contents:&jsonValue ) -> String {
 
 #[wasm_bindgen]
 pub fn search (searches: usize, inp: String, acc: usize) -> String {
-    let mut results_fin: String;   
     let mut i: u8;
     let j: u8;
     match searches {
@@ -136,7 +129,7 @@ pub fn search (searches: usize, inp: String, acc: usize) -> String {
     let file = read_file();
     let contents: jsonValue = serde_json::from_str(&file.as_string().expect("Can't read json")).unwrap();
 
-    let mut results = format!("<br>");
+    let mut results: String = "<br>".to_string();
 
     let re = Regex::new(r"[[:alpha:]]+").unwrap(); // only words to search for
     let inp_search = &inp.to_lowercase();
@@ -146,8 +139,8 @@ pub fn search (searches: usize, inp: String, acc: usize) -> String {
     word_ind.sort();
     word_ind.dedup(); // deduplicate after sorting removes duplicate words.
     if word_ind.is_empty() || (word_ind[0].chars().count() < 2 && word_ind[0].len() == word_ind.capacity()) { //return if search request invalid
-        results_fin = format!("<div class = \"alert\">Search query must have a minimum of 2 characters</div>");
-        return results_fin;
+        //return the string and finish
+        return "<div class = \"alert\">Search query must have a minimum of 2 characters</div>".to_string();
     } 
 
     let mut search_num = 0;
@@ -179,41 +172,30 @@ pub fn search (searches: usize, inp: String, acc: usize) -> String {
                         } 
                     }
                     if counted == word_ind.len() { // find location of words
-                        let mut highlight_insert = Vec::new();
+                        //let mut highlight_insert = Vec::new();
                         for word in word_ind.iter() {
                             if word == &"i" { // have to remove 'i' from highlight as it highlights the <i> tag; change to capital 'I'
-                                let re = Regex::new(&format!("\\b{}\\b", "I")).unwrap();
-                                if re.is_match(&selected) {
-                                    let mat = re.find(&selected).unwrap(); //search in original case
-                                    let match_offset = mat.start();
-                                    let match_end = mat.end();
-                                    highlight_insert.push([match_offset, match_end]);
+                            let select = selected.clone();//not sure why this is necessary; complier complains without it    
+                            let re = Regex::new(&format!("\\b{}\\b", "I")).unwrap();
+                                if re.is_match(&select) {
+                                    let mat = re.find(&select).unwrap(); //search in original case
+                                    selected.replace_range(mat.end()..mat.end(), "</span>"); //end first
+                                    selected.replace_range(mat.start()..mat.start(), "<span class=\"highlight\">");
                                 }
                             } else {
-                            let re = Regex::new(&format!("\\b{}\\b", &word)).unwrap();
+                                let re = Regex::new(&format!("\\b{}\\b", &word)).unwrap();
                                 if re.is_match(&selected.to_lowercase()) {
                                     let select = &selected.to_lowercase();
                                     let mat = re.find(&select).unwrap();
-                                    let match_offset = mat.start();
-                                    let match_end = mat.end();
-                                    highlight_insert.push([match_offset, match_end]);
+                                    selected.replace_range(mat.end()..mat.end(), "</span>"); //end first
+                                    selected.replace_range(mat.start()..mat.start(), "<span class=\"highlight\">");
                                 }
                             }
                         }
-                        highlight_insert.sort(); // sort so highest array index last
-                        let mut copy_highlight = highlight_insert.clone();
-                        for _match_word in highlight_insert { // add highlighting to the last match first
-                            let current = copy_highlight.last().unwrap();
-                            let match_offset = current[0];
-                            let match_end = current[1];
-                            selected.replace_range(match_end .. match_end, "</span>"); //end first
-                            selected.replace_range(match_offset..match_offset, "<span class=\"highlight\">");
-                            copy_highlight.pop();
-                        }
-                        let found = format!("<div id = \"{0}-{1}-{3}-{4}\" class = \"listResults\"><a href = \"../book#{0}-{1}-{3}-{4}\">
+            
+                        results.push_str(&format!("<div id = \"{0}-{1}-{3}-{4}\" class = \"listResults\"><a href = \"../book#{0}-{1}-{3}-{4}\">
                         <p class=\"bookResults\">{2} {3}:{4}</p></a><a href = \"../book#{0}-{1}-{3}-{4}\"><p class = \"scrResults\">{5}</p></a></div>", 
-                        i, j ,books["bookName"].as_str().unwrap(),chapters["chapter"], verses["ver"], selected); // extract route from id - see javascript, search component; angular stops routing from innerhtml
-                        results.push_str(&found);
+                        i, j ,books["bookName"].as_str().unwrap(),chapters["chapter"], verses["ver"], selected));// extract route from id - see javascript, search component; angular stops routing from innerhtml
                         search_num += 1;
                     }
                 }
@@ -221,6 +203,8 @@ pub fn search (searches: usize, inp: String, acc: usize) -> String {
         }
         i = i + 1;
     }
+    
+    let mut results_fin: String;
                 
     match search_num {
         0 => {

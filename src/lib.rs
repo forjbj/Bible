@@ -181,6 +181,7 @@ pub fn search (searches: usize, inp: String, acc: usize) -> String {
                                     let mat = re.find(&select).unwrap(); //search in original case
                                     selected.replace_range(mat.end()..mat.end(), "</span>"); //end first
                                     selected.replace_range(mat.start()..mat.start(), "<span class=\"highlight\">");
+
                                 }
                             } else {
                                 let re = Regex::new(&format!("\\b{}\\b", &word)).unwrap();
@@ -225,15 +226,12 @@ pub fn search (searches: usize, inp: String, acc: usize) -> String {
 #[wasm_bindgen]
 pub fn render_widget() -> String {  //need to be string for serde_json to index
     // random generate book
-    let mut test_rng = thread_rng();
-    let test: usize = test_rng.gen_range(0..2); // excludes higher number
+    let test: usize = thread_rng().gen_range(0..2); // excludes higher number
     let book: usize;
     if test == 0 {
-        let mut book_rng = thread_rng();
-        book = book_rng.gen_range(0..39);
+        book = thread_rng().gen_range(0..39);
     } else {
-        let mut book_rng = thread_rng();
-        book = book_rng.gen_range(0..27);
+        book = thread_rng().gen_range(0..27);
     }
 
     let mut result: String;
@@ -249,12 +247,10 @@ pub fn render_widget() -> String {  //need to be string for serde_json to index
     let contents: jsonValue = serde_json::from_str(&file.as_string().expect("Can't read json")).unwrap();
 
     //because of type change from javascript to rust: first Array in Object has the items labelled "0" and "1" (numbers in strings) **CAN'T CHANGE JSON
-    let bible_book = &contents[format!("{}", &test)]["books"][&book];
 
-    let current = bible_book["chapters"].as_array().unwrap();
+    let current = contents[format!("{}", &test)]["books"][&book]["chapters"].as_array().unwrap();
     let num_chapters = current.len();
-    let mut chap_rng = thread_rng();
-    let chap = chap_rng.gen_range(0..num_chapters);
+    let chap = thread_rng().gen_range(0..num_chapters);
 
     result = format!("<section class = \"head\" id =\"{}-{}-{}\">", test, book, chap);
 
@@ -262,27 +258,22 @@ pub fn render_widget() -> String {  //need to be string for serde_json to index
     for verse in chapter["verses"].as_array().unwrap() {
         if verse["ver"] == 1 {
             if psalms {
-                let desc = format!("<p class=\"psalm fontType\">{}</p>", verse["description"].as_str().unwrap()); //unwrap necessary to remove ""
-                result.push_str(&desc);
+                result.push_str(&format!("<p class=\"psalm fontType\">{}</p>", verse["description"].as_str().unwrap()));
             };
-            let first = format!("<div id = \"1\"><p class=\" ver firstVerse fontType\">{}</p></div>", verse["scr"].as_str().unwrap());
-            result.push_str(&first);
+            result.push_str(&format!("<div id = \"1\"><p class=\" ver firstVerse fontType\">{}</p></div>", verse["scr"].as_str().unwrap()));
         } else {     
             if psalms {               // needed for psalm 119
                 if verse["description"] != jsonNull {
-                    let desc = format!("<p class=\"psalm fontType\">{}</p>",verse["description"].as_str().unwrap()); //unwrap necessary to remove ""
-                    result.push_str(&desc);
+                    result.push_str(&format!("<p class=\"psalm fontType\">{}</p>",verse["description"].as_str().unwrap()));
                 }
             }
-            let script = format!("<div id = \"{0}\"  class = \"ver verses\"><p class=\"verseNumber fontType\">{0}</p>
-                                    <p class = \"scripture fontType\">{1}</p></div>", verse["ver"], verse["scr"].as_str().unwrap());
-            result.push_str(&script);
+            result.push_str(&format!("<div id = \"{0}\"  class = \"ver verses\"><p class=\"verseNumber fontType\">{0}</p>
+            <p class = \"scripture fontType\">{1}</p></div>", verse["ver"], verse["scr"].as_str().unwrap()));
         }
     }
 
-    if bible_book["note"] != jsonNull && chapter == current.last().unwrap(){
-        let note =  format!("<br><div class = \"notes\">{}</div></section>", bible_book["note"].as_str().unwrap());
-        result.push_str(&note);
+    if contents[format!("{}", &test)]["books"][&book]["note"] != jsonNull && chapter == current.last().unwrap(){
+        result.push_str(&format!("<br><div class = \"notes\">{}</div></section>", contents[format!("{}", &test)]["books"][&book]["note"].as_str().unwrap()));
     } else {
         result.push_str("</section>")
     }

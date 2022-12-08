@@ -1,0 +1,1 @@
+addEventListener("message",({data:e})=>{postMessage(e)});
